@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class=" ">
+    <head>
+      
+  <script src="cordova.js"></script>
+  <script src="./js/www.min.js"></script>
+  <script src="./js/indexqrscanner.js"></script>
+
+        <!-- 
+         * @Package: Comodin Stock
+         * @Author: Comodin Stock
+         * @Version: 1.0
+        -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+        <title>Stock</title>
+        <meta content="Comodin Stock" name="description" />
+        <meta content="Comodin Stock" name="author" />
+
+
+    <!-- App Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+        <!-- CORE CSS FRAMEWORK - START -->
+        <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+        <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+        <!-- CORE CSS FRAMEWORK - END -->
+
+        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+                <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+
+        <!-- CORE CSS TEMPLATE - START -->
+
+        
+                <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" id="main-style"/>
+        <!-- CORE CSS TEMPLATE - END -->
+
+    
+
+    </head>
+    <!-- END HEAD -->
+
+    <!-- BEGIN BODY -->
+
+    
+    <body class="  isfullscreen  html"  data-header="light" data-footer="dark"  data-header_align="center"  data-menu_type="left" data-menu="light" data-menu_icons="on" data-footer_type="left" data-site_mode="light" data-footer_menu="show" data-footer_menu_style="light" >
+        <div class="preloader-background">
+            <div class="preloader-wrapper">
+                <div id="preloader"></div>
+            </div>
+        </div>
+
+        <img src="img/qrtransparente.png" style="position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 310px;
+   height: 310px;
+   margin-top: -150px;
+   margin-left: -150px;">
+
+        <div class="center index-start">
+
+
+
+          <a href="#" onclick="leerQR()" id="linkqr" class='waves-light btn-large bg-primary'>Escanear QR </a>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- PWA Service Worker Code -->
+
+<script type="text/javascript">
+  // This is the "Offline copy of pages" service worker
+
+// Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+
+// Check compatibility for the browser we're running this in
+if ("serviceWorker" in navigator) {
+  if (navigator.serviceWorker.controller) {
+    console.log("[PWA Builder] active service worker found, no need to register");
+  } else {
+    // Register the service worker
+    navigator.serviceWorker
+      .register("pwabuilder-sw.js", {
+        scope: "./"
+      })
+      .then(function (reg) {
+        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+      });
+  }
+}
+
+</script>
+
+
+<!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+
+<!-- CORE JS FRAMEWORK - START --> 
+<script src="assets/js/jquery-2.2.4.min.js"></script>
+<script src="assets/js/materialize.js"></script>
+<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script> 
+<!-- CORE JS FRAMEWORK - END --> 
+
+
+<!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      $(".carousel-fullscreen.carousel-slider").carousel({
+        fullWidth: true,
+        indicators: true,
+      }).css("height", $(window).height());
+      setTimeout(autoplay, 3500);
+      function autoplay() {
+          $(".carousel-fullscreen.carousel-slider").carousel("next");
+	      setTimeout(autoplay, 3500);
+      }
+
+      
+
+  });   </script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+
+
+<!-- CORE TEMPLATE JS - START --> 
+<script src="assets/js/init.js"></script>
+<script src="assets/js/settings.js"></script>
+
+<script src="assets/js/scripts.js"></script>
+
+<!-- END CORE TEMPLATE JS - END --> 
+
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(){
+    $('.preloader-background').delay(10).fadeOut('slow');
+
+  });
+
+
+  
+  function leerQR(){
+    console.log('Destroying QRScanner to test everything...');
+    QRScanner.destroy();
+    console.log('Preparing QRScanner...');
+    QRScanner.prepare(function(err, status){
+      if(err){
+        console.error(err._message);
+      } else {
+        console.log('QRScanner is initialized. Status:');
+        console.log(status);
+        console.log('Showing QRScanner...');
+        QRScanner.show(function(){
+          console.log('Starting scan...');
+          $('#linkqr').hide();
+          QRScanner.scan(
+            function(err, result){
+              if(err) {
+                console.log('scan error:', result);
+              } else {
+                console.log('scan:', result);
+
+                
+                let codigo  = '';
+                if (result['result']) {
+                  codigo = result['result'];
+                } else {
+                  codigo = result;
+                }
+                if (confirm('Cód.: ' + codigo + ' ¿Desea continuar?')) {
+                  // Save it!
+                  var url_string = window.location.href; //window.location.href
+                  var url = new URL(url_string);
+                  var id = url.searchParams.get("id");
+                  window.location = '/camara.html?qr='+codigo+'&id='+id
+
+                  $('#consola').html(result);
+                  $('#consola').html(console.log(result));
+                  console.log('Thing was saved to the database.');
+                } else {
+                  // Do nothing!
+                  leerQR()
+                  console.log('Thing was not saved to the database.');
+                }
+        
+                console.log(result['result']);
+              }
+            });
+        });
+      }
+    });
+  }
+
+  $(document).ready(function () {
+  $( '#linkqr' ).click ();
+});
+
+</script>
+</body>
+</html>
+
+
+

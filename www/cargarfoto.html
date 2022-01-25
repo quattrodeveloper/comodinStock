@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" >
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    
+<style>
+
+.xmpl {
+    display: flex;
+    flex-direction: column; }
+
+.xmpl img , .xmpl video{
+    object-fit: contain;
+    width : 100%; 
+    border : 6px solid ivory;
+    min-height: 128px;
+    margin-bottom: 12px; }
+</style>
+<script>
+document.addEventListener('deviceready', onDeviceReady, false);
+let isDeviceReady = false;
+
+function onDeviceReady() {
+    isDeviceReady = true;
+}
+
+function capturarFoto(img) {
+    /* Front Camera , disable save to phone ,
+        data url , quality 60 . */
+    if (isDeviceReady) {
+        let opciones = {
+            cameraDirection: Camera.Direction.FRONT,
+            saveToPhotoAlbum: false,
+            destinationType: Camera.DestinationType.DATA_URL,
+            quality: 60
+        };
+
+        function capturadeimg(image) {
+            img.src = `data:image/jpeg;base64,${image }`;
+        }
+
+        function errorimg(errorMsg) {
+            console.log(errorMsg);
+        }
+        navigator.camera.getPicture(capturadeimg, errorimg, opciones);
+    }
+}
+</script>
+
+    <title>Demo Cordova camera plugin</title>
+</head>
+<body>
+    <div class="app">
+        <h1>Demo Cordova camera plugin</h1>
+        <div class="xmpl">
+            <div  
+                class="button"
+                onclick="capturarFoto(document.getElementById('imgfoto'))">
+                    Camera Picture</div>
+            <img id="imgfoto" name="imgfoto" />
+        </div>
+    </div>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
