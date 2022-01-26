@@ -23,11 +23,18 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-qrscanner": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "cordova-plugin-browsersync-gen2": {}
     },
     "platforms": [
       "browser",
       "android"
     ]
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "cordova-plugin-browsersync-gen2": "^1.1.7",
+    "cross-env": "^7.0.3",
+    "wait-on": "^6.0.0"
   }
 }
