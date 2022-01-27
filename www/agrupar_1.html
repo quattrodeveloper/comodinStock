@@ -204,7 +204,8 @@ function guardar() {
   formData.append("descripcion", $('#descripcion').val());
 
   $.ajax({
-    url: 'http://local.quattropy.com/comodin_stock/app/agrupar_1.php',
+    //url: 'http://local.quattropy.com/comodin_stock/app/agrupar_1.php',
+    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/agrupar_1',
     data: formData,
     cache: false,
     contentType: false,
@@ -212,9 +213,9 @@ function guardar() {
     method: 'POST'
   })
   .done(function(data) {
-    console.log(data)
+    console.log(data.data.lastId)
     //alert("Ok")
-    window.location = '/agrupar_2.html?id='+data
+    window.location = '/agrupar_2.html?id='+data.data.lastId
 
   })
   .fail(function() {alert("Error");});

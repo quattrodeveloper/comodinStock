@@ -208,10 +208,10 @@ function coleccionComponentes() {
   var id = url.searchParams.get("id");
 
 
-  $.getJSON( "http://local.quattropy.com/comodin_stock/app/coleccionComponentes.php?id="+id, function( data ) {
+  $.getJSON( "http://local.quattropy.com/comodin_stock/s1/public/api/stock/getComponentes?id="+id, function( data ) {
 
     let cant = 0;
-  $(data).each(function(i,val)
+  $(data.data).each(function(i,val)
 
  {
 
@@ -220,7 +220,7 @@ function coleccionComponentes() {
   let coleccion = "";
   if(val['nombreproducto']) {
     cant++;
-    coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/app/image/"+val['fotoproducto']+"' alt='' class='circle'><span class='title'>"+val['nombreproducto']+" ("+val['qr']+")</span><p>"+val['descripcionproducto']+"</p></div><div class='secondary-content'><a href='#' onclick='eliminar("+val['idcomponente']+")' name='"+val['idproducto']+"'><i class='mdi mdi-delete'></i></a></div></li>";
+    coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/s1/public/img/stock/sm/productos/"+val['fotoproducto']+"' alt='' class='circle'><span class='title'>"+val['nombreproducto']+" ("+val['qr']+")</span><p>"+val['descripcionproducto']+"</p></div><div class='secondary-content'><a href='#' onclick='eliminar("+val['idcomponente']+")' name='"+val['idproducto']+"'><i class='mdi mdi-delete'></i></a></div></li>";
   }
   $('#cant').html('('+cant+')');
   $(coleccion).appendTo( "#coleccionComponentes" );
