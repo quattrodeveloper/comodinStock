@@ -118,16 +118,16 @@ function prepare(){
                   
 
                   $.ajax({
-                    url: 'http://local.quattropy.com/comodin_stock/app/existeqr.php?qr='+codigo,
+                    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/existeqr?qr='+codigo,
                     data: '',
                     cache: false,
                     contentType: false,
                     processData: false,
-                    method: 'POST'
+                    method: 'GET'
                   })
                   .done(function(data) {
-                    console.log(data)
-                    id = parseInt(data);
+                    console.log(data.data.existeqr) 
+                    id = parseInt(data.data.existeqr);
                     if(id===0) {
                       var url_string = window.location.href; //window.location.href
                       var url = new URL(url_string);
