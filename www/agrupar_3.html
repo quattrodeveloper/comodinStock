@@ -57,12 +57,12 @@ document.addEventListener('ondeviceready', leerQR, false);
   formData.append("qr", codigo);
 
   $.ajax({
-    url: 'http://local.quattropy.com/comodin_stock/app/agrupar_3.php',
+    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/agrupar_2?idAgrupar='+id+'&qr='+codigo,
     data: formData,
     cache: false,
     contentType: false,
     processData: false,
-    method: 'POST'
+    method: 'GET'
   })
   .done(function(data) {
     window.location = '/agrupar_2.html?id='+id
