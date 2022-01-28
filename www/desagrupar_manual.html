@@ -195,21 +195,22 @@ if ("serviceWorker" in navigator) {
 
 
 function guardar() { 
+  let qr = $('#qr').val()
   var formData = new FormData();
   formData.append("qr", $('#qr').val());
-
+  
   $.ajax({
-    url: 'http://local.quattropy.com/comodin_stock/app/desagrupar.php',
+    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/desagrupar?qr='+qr,
     data: formData,
     cache: false,
     contentType: false,
     processData: false,
-    method: 'POST'
+    method: 'GET'
   })
   .done(function(data) {
     console.log(data)
-    alert("Componente eliminado \n Grupo: "+data[0]['nombregrupo']+" - "+data[0]['descripciongrupo']+" \n Componente: "+data[0]['nombre']);
-
+   // alert("Componente eliminado \n Grupo: "+data[0]['nombregrupo']+" - "+data[0]['descripciongrupo']+" \n Componente: "+data[0]['nombre']);
+    alert('Ok');
     window.location = '/';
 
   })
