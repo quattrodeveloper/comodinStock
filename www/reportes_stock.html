@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class=" ">
+
+<head>
+  <script src="./js/session_page.js"></script>
+  <!-- 
+         * @Package: Comodin Stock
+         * @Author: themepassion
+         * @Version: 1.0
+        -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Comodin Stock</title>
+  <meta content="Comodin Stock" name="description" />
+
+
+  <!-- App Icons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/images/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/images/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/images/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/images/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/images/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/images/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/images/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/images/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/images/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icons/favicon-16x16.png">
+  <link rel="manifest" href="assets/images/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="assets/images/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+  <!-- CORE CSS FRAMEWORK - START -->
+  <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+    media="screen,projection" />
+  <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
+    media="screen,projection" />
+
+
+  <!-- CORE CSS FRAMEWORK - END -->
+
+  <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
+  <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
+
+  <!-- CORE CSS TEMPLATE - START -->
+
+
+  <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" id="main-style" />
+  <!-- CORE CSS TEMPLATE - END -->
+
+
+
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+
+<body class="  html" data-header="light" data-footer="dark" data-header_align="center" data-menu_type="left"
+  data-menu="light" data-menu_icons="on" data-footer_type="left" data-site_mode="light" data-footer_menu="show"
+  data-footer_menu_style="light">
+  <div class="preloader-background">
+    <div class="preloader-wrapper">
+      <div id="preloader"></div>
+    </div>
+  </div>
+
+
+
+  <!-- START navigation -->
+  <nav class="fixedtop topbar navigation" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="index.html" class=" brand-logo ">Stock</a>
+      <!-- <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul> -->
+
+      <!-- <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul> -->
+      <a href="#" data-target="" class="waves-effect waves-circle navicon back-button htmlmode show-on-large "><i
+          class="mdi mdi-chevron-left" data-page=""></i></a>
+
+      <a href="#" data-target="slide-nav" class="waves-effect waves-circle navicon sidenav-trigger show-on-large"><i
+          class="mdi mdi-menu"></i></a>
+
+
+
+      <a href="#" data-target="slide-settings"
+        class="waves-effect waves-circle navicon right sidenav-trigger show-on-large pulse"><i
+          class="mdi mdi-tune"></i></a>
+
+      <a href="#" data-target="" class="waves-effect waves-circle navicon right nav-site-mode show-on-large"><i
+          class="mdi mdi-invert-colors mdi-transition1"></i></a>
+      <!-- <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
+    </div>
+  </nav>
+  <ul id="slide-nav" class="sidenav sidemenu">
+    <li class="menu-close"><i class="mdi mdi-close"></i></li>
+    <li class="user-wrap">
+      <div class="user-view row">
+        <!-- <div class="background">
+        <img src="assets/images/office.jpg">
+      </div> -->
+        <div class="col s3 imgarea">
+          <a href="#user"><img class="circle" src="assets/images/user-37.jpg"></a>
+        </div>
+        <div class="col s9 infoarea">
+          <a href="#name"><span class="name">Usuario</span></a>
+          <a href="#email"><span class="email">usuario@email.com</span></a>
+        </div>
+      </div>
+    </li>
+
+
+
+  </ul>
+  </li>
+
+  </ul>
+
+  <div class="container">
+
+    <div class="section">
+      <h5 class="pagetitle">Catálogo de productos<span id="cant"></span></h5>
+      <p>Productos disponibles en depósito (D) Productos usados en producción (U) Total (T)</p>
+      <div class="divider"></div>
+    </div>
+
+
+    <div class="section">
+
+
+
+      <div class="row ">
+
+        <div class="input-field col s12">
+          <i class="mdi mdi-magnify prefix"></i>
+          <textarea id="buscador" class="materialize-textarea" style="height: 42px; width:90%;"></textarea>
+          <label for="buscador" class="" id="labelbuscador">Buscar...</label>
+          <a href="#" onclick="pin()"><i class="mdi mdi-pin-outline prefix" id="pin"></i></a>
+        </div>
+
+        <ul class="collection invoice-item" id="coleccionProductos">
+
+        </ul>
+
+        <div class="spacer"></div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+  </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="backtotop">
+    <a class="btn-floating btn primary-bg">
+      <i class="mdi mdi-chevron-up"></i>
+    </a>
+  </div>
+
+
+  <script>
+
+    function agrupar_3() {
+      var url_string = window.location.href; //window.location.href
+      var url = new URL(url_string);
+      var id = url.searchParams.get("id");
+      window.location = '/agrupar_3_manual.html?id=' + id;
+    }
+
+    document.addEventListener("deviceready", coleccionProductos, false);
+    function coleccionProductos() {
+      /*
+      var url_string = window.location.href; //window.location.href
+      var url = new URL(url_string);
+      var id = url.searchParams.get("id");
+      */
+
+      $.getJSON(config.urlServer+"getStock", function (data) {
+
+        let cant = 0;
+        if(data.status != "success"){
+          alert('no se puedo conectar')
+        }
+        $(data.data).each(function (i, val) {
+
+          // $('#titulo').html(val['nombregrupo']);
+          // $('#descripcion').html(val['descripciongrupo']);
+          let coleccion = "";
+          let foto = 'pic.jpg';
+          if (val['prod_nombre']) {
+            if (val['prod_foto']) {
+              foto = val['prod_foto'];
+            }
+
+
+            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span><p>" + val['dep_nombre'] + "</p></div><div class='secondary-content'><span>D:" + val['disponibles'] + " </span><span>U:" + val['usados'] + " </span><span>T:" + val['total'] + " </span></div></li>";
+            cant++;
+          }
+
+          $(coleccion).appendTo("#coleccionProductos");
+          $('#cant').html('(' + cant + ')')
+
+          if (localStorage.getItem('pin') !== '') {
+            var filtro = localStorage.getItem('pin');
+            lista(filtro)
+            $("#buscador").val(filtro);
+            $("#buscador").prop("disabled", true); //bloquear input
+            $('#labelbuscador').hide(); //borrar el label
+            $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
+            $("#pin").addClass("mdi-pin"); //agregar pin activo
+
+
+
+
+          }
+
+          $("#buscador").keyup(function () {
+            var filtro = $(this).val();
+            lista(filtro)
+
+
+
+          });
+
+
+
+        });
+
+
+      });
+
+
+    }
+
+    function lista(filtro) {
+      let cant = 0;
+      $("ul li").each(function () {
+        if ($(this).text().search(new RegExp(filtro, "i")) < 0) {
+          $(this).hide();
+        } else {
+          $(this).show()
+          cant++;
+        }
+      });
+      if (filtro == '') { cant = cant - 2; }
+      $('#cant').html('(' + cant + ')')
+    }
+
+    function siguiente(idProducto) {
+      window.location = '/altaprod_2.html?id=' + idProducto;
+    }
+
+    function pin() {
+      if (localStorage.getItem('pin') == '' && $('#buscador').val() !== '') {
+        localStorage.setItem('pin', $('#buscador').val()); //guardar el input en la base de datos
+        $("#buscador").prop("disabled", true); //bloquear input
+        $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
+        $("#pin").addClass("mdi-pin"); //agregar pin activo
+
+      } else {
+        localStorage.setItem('pin', '');
+        $("#buscador").prop("disabled", false)
+        $("#buscador").val('')
+        $('#labelbuscador').show()
+        $("#pin").removeClass("mdi-pin")
+        $('#pin').addClass("mdi-pin-outline")
+
+        let filtro = ''
+        lista(filtro)
+
+
+
+      }
+    }
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+
+  <!-- CORE JS FRAMEWORK - START -->
+  <script src="assets/js/jquery-2.2.4.min.js"></script>
+  <script src="./js/config.js"></script>
+  <script src="assets/js/materialize.js"></script>
+  <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  <!-- CORE JS FRAMEWORK - END -->
+
+
+  <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
+  <script type="text/javascript">
+    $("input#nombre, textarea#descripcion").characterCounter();
+
+
+
+
+  </script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
+
+  <script src="cordova.js"></script>
+
+  <!-- CORE TEMPLATE JS - START -->
+  <script src="assets/js/init.js"></script>
+  <script src="assets/js/settings.js"></script>
+
+  <script src="assets/js/scripts.js"></script>
+
+  <!-- END CORE TEMPLATE JS - END -->
+
+
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      $('.preloader-background').delay(10).fadeOut('slow');
+    });
+  </script>
+
+</body>
+
+</html>
