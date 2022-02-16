@@ -213,6 +213,7 @@ function guardar() {
   let qr = $('#qr').val();
   formData.append("id", id);
   formData.append("qr", qr);
+  console.log(qr)
 
   $.ajax({
     url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/agrupar_2?idAgrupar='+id+'&qr='+qr,
@@ -220,12 +221,16 @@ function guardar() {
     cache: false,
     contentType: false,
     processData: false,
-    method: 'GET'
+    method: 'POST'
   })
   .done(function(data) {
+    console.log(data)
     window.location = '/agrupar_2.html?id='+id
   })
-  .fail(function() {alert("Error");});
+  .fail(function(data) {
+    console.log(data)
+    alert("Error");
+  });
 
   }
 

@@ -227,7 +227,10 @@ function guardar() {
     window.location = './agrupar_2.html?id='+data.data.lastId
 
   })
-  .fail(function() {alert("Error");});
+  .fail(function(data) {
+    console.log(data);
+    alert("Error");
+  });
   }
 
 

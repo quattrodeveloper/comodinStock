@@ -383,18 +383,22 @@
       */
 
       $.getJSON("http://local.quattropy.com/comodin_stock/s1/public/api/stock/getDepositos", function (data) {
-
+        
         let cant = 0;
         $(data.data).each(function (i, val) {
-
+          
           let coleccion = "";
           let foto = 'pic.jpg';
-          if (val['nombre']) {
+          if (val['id']) {
             coleccion = coleccion + "<a href='#' onclick='seleccionardeposito(" + val['id'] + ")' id='li-" + val['id'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id'] + "'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['nombre'] + "</span><p>" + val['ciudad'] + "</p></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id'] + "'></i></div></li></a>";
             cant++;
+            
           }
+          console.log(coleccion);
 
+          // $('#coleccionProductos').append(coleccion);
           $(coleccion).appendTo("#coleccionProductos");
+
           $('#cant').html('(' + cant + ')')
 
           if (localStorage.getItem('idDeposito') !== '') {
