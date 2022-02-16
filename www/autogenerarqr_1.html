@@ -41,8 +41,10 @@
   <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
   <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
-    media="screen,projection" />
+  <!-- <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+    media="screen,projection" /> -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+
   <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
 
@@ -130,17 +132,13 @@
   <div class="container">
     <div class="section">
 
-
-      <div class="card-panel bg-primary invoice-to">
-        <h5 class="white-text top-0" id="titulo"></h5>
-        <div class="white-text" id="descripcion">
-
-        </div>
-      </div>
-
       <div class="row ">
         <div class="col s12 pad-0">
-          <h5 class="bot-20 sec-tit  ">Componentes <span id="cant"></span></h5>
+          <h5 class="bot-20 sec-tit  ">Series de Cód. QR <span id="cant"></span></h5>
+          <p>Cód. disponibles (D) <br>
+            Cód. usados (U)  <br>
+            Total (T)
+          </p>
           <ul class="collection invoice-item" id="coleccionComponentes">
 
 
@@ -192,15 +190,8 @@
     }
   </style>
 
-  <a href="#" id="leerQR" class="fab" onclick="agrupar_3()">+</a>
+  <a href="./autogenerarqr_2.html" class="fab">+</a>
   <script>
-
-    function agrupar_3() {
-      var url_string = window.location.href; //window.location.href
-      var url = new URL(url_string);
-      var id = url.searchParams.get("id");
-      window.location = '/agrupar_3_manual.html?id=' + id;
-    }
 
     document.addEventListener("deviceready", coleccionComponentes, false);
     function coleccionComponentes() {
@@ -209,18 +200,14 @@
       var id = url.searchParams.get("id");
 
 
-      $.getJSON("http://local.quattropy.com/comodin_stock/s1/public/api/stock/getComponentes?id=" + id, function (data) {
+      $.getJSON("http://local.quattropy.com/comodin_stock/s1/public/api/stock/getSeries", function (data) {
 
         let cant = 0;
         $(data.data).each(function (i, val) {
-          $('#titulo').html(val['nombregrupo']);
-          $('#descripcion').html(val['descripciongrupo']);
           let coleccion = "";
-          if (val['nombreproducto']) {
-            let qr = val['qr'];
-            qr = qr.substring(qr.length-6, qr.length);
+          if (val['descripcion']) {
             cant++;
-            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/s1/public/img/stock/sm/productos/" + val['fotoproducto'] + "' alt='' class='circle'><span class='title'>" + val['nombreproducto'] + " (" + qr + ")</span><p>" + val['descripcionproducto'] + "</p></div><div class='secondary-content'><a href='#' onclick='eliminar(" + val['idcomponente'] + ")' name='" + val['idproducto'] + "'><i class='mdi mdi-delete'></i></a></div></li>";
+            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie']  + ")</span><p>D: "+val['inactivos']+" U: " + val['activos'] +" T: "+val['total']+"</p></div><div class='secondary-content'><a href='#'><i class='mdi mdi-printer-outline'></i></a>    <a href='#'><i class='mdi mdi-chevron-right'></i></a></div></li>";
           }
           $('#cant').html('(' + cant + ')');
           $(coleccion).appendTo("#coleccionComponentes");
@@ -230,32 +217,7 @@
 
     }
 
-    function eliminar(idComponente) {
-      var url_string = window.location.href; //window.location.href
-      var url = new URL(url_string);
-      var formData = new FormData();
-      formData.append("idcomponente", idComponente);
-      let id = url.searchParams.get("id");
 
-      $.ajax({
-        url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/eliminarComponente?id='+idComponente,
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        method: 'GET'
-      })
-        .done(function (data) {
-          window.location = '/agrupar_2.html?id=' + id;
-        })
-        .fail(function () {
-          alert("Error");
-        });
-
-
-
-
-    }
 
 
 
