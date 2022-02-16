@@ -207,7 +207,7 @@
           let coleccion = "";
           if (val['descripcion']) {
             cant++;
-            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie']  + ")</span><p>D: "+val['inactivos']+" U: " + val['activos'] +" T: "+val['total']+"</p></div><div class='secondary-content'><a href='#'><i class='mdi mdi-printer-outline'></i></a></div></li>";
+            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie']  + ")</span><p>D: "+val['inactivos']+" U: " + val['activos'] +" T: "+val['total']+"</p></div><div class='secondary-content'><a href='http://local.quattropy.com/comodin_stock/s1/public/api/stock/getSerie?idserie="+ val['idserie']  +"'><i class='mdi mdi-printer-outline'></i></a></div></li>";
           }
           $('#cant').html('(' + cant + ')');
           $(coleccion).appendTo("#coleccionComponentes");
@@ -279,7 +279,7 @@
     //     .done(function (data) {
     //       console.log(data)
     //       alert("Ok")
-    //       window.location = '/agrupar_2.html'
+    //       window.location = './agrupar_2.html'
 
     //     })
     //     .fail(function () {

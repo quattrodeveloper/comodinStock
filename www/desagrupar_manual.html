@@ -205,7 +205,7 @@ function guardar() {
     cache: false,
     contentType: false,
     processData: false,
-    method: 'GET'
+    method: 'POST'
   })
   .done(function(data) {
     console.log(data)
@@ -214,7 +214,10 @@ function guardar() {
     window.location = '/';
 
   })
-  .fail(function() {alert("Error");});
+  .fail(function(data) {
+    console.log(data);
+    alert("Error");
+  });
   }
 
 

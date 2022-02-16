@@ -165,6 +165,15 @@ body{
   background: #f5f5f5;
   color: #455A64;
 }
+i.mdi.mdi-menu {
+  display: none;
+}
+i.mdi.mdi-invert-colors.mdi-transition1 {
+  display: none;
+}
+i.mdi.mdi-tune {
+  display: none;
+}
 body, body *,p{
   font-family: Roboto;
   font-size: 16px;
