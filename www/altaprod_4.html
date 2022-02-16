@@ -527,7 +527,8 @@
         formData.append("descripcion", $('#descripcion').val());
 
         $.ajax({
-          url: 'http://local.quattropy.com/comodin_stock/app/cargardb.php',
+          // url: 'http://local.quattropy.com/comodin_stock/app/cargardb.php',
+          url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/cargarProd',
           data: formData,
           cache: false,
           contentType: false,

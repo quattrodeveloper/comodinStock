@@ -87,8 +87,9 @@
         <div class="center index-start">
 
 
-
           <a href="#" onclick="iniciarQR()" id="linkqr" class='waves-light btn-large bg-primary'>Escanear QR </a>
+
+          <a href="#" onclick="usarQR()" class='waves-light btn-large bg-primary'>Usar QR no impreso</a>
 
 
 
@@ -96,7 +97,14 @@
 
 
 
-
+<script>
+  function usarQR(){
+    var url_string = window.location.href; //window.location.href
+    var url = new URL(url_string);
+    var id = url.searchParams.get("id");
+    window.location = '/altaprod_usarqr.html?idProducto='+id
+  }
+</script>
 
 
 
@@ -181,9 +189,7 @@ if ("serviceWorker" in navigator) {
 
   
 
-  $(document).ready(function () {
-  $( '#linkqr' ).click ();
-});
+
 
 </script>
 </body>

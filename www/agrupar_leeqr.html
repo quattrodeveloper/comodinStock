@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html class=" ">
     <head>
+      
+  <script src="cordova.js"></script>
+  <script src="./js/www.min.js"></script>
+  <script src="./js/indexagruparqr.js"></script>
+
         <!-- 
          * @Package: Comodin Stock
-         * @Author: themepassion
+         * @Author: Comodin Stock
          * @Version: 1.0
         -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-        <title>Comodin Stock</title>
+        <title>Stock</title>
         <meta content="Comodin Stock" name="description" />
+        <meta content="Comodin Stock" name="author" />
 
 
     <!-- App Icons -->
@@ -55,115 +61,51 @@
                 <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" id="main-style"/>
         <!-- CORE CSS TEMPLATE - END -->
 
-        
-  
+    
+
     </head>
     <!-- END HEAD -->
 
     <!-- BEGIN BODY -->
 
     
-    <body class="  html"  data-header="light" data-footer="dark"  data-header_align="center"  data-menu_type="left" data-menu="light" data-menu_icons="on" data-footer_type="left" data-site_mode="light" data-footer_menu="show" data-footer_menu_style="light" >
+    <body class="  isfullscreen  html"  data-header="light" data-footer="dark"  data-header_align="center"  data-menu_type="left" data-menu="light" data-menu_icons="on" data-footer_type="left" data-site_mode="light" data-footer_menu="show" data-footer_menu_style="light" >
         <div class="preloader-background">
             <div class="preloader-wrapper">
                 <div id="preloader"></div>
             </div>
         </div>
 
-        
+        <img src="img/qrtransparente.png" style="position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 310px;
+   height: 310px;
+   margin-top: -150px;
+   margin-left: -150px;">
 
-<!-- START navigation -->
-<nav class="fixedtop topbar navigation" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="index.html" class=" brand-logo " >Stock</a>
-      <!-- <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul> -->
+        <div class="center index-start">
 
-      <!-- <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul> -->
-        <a href="#" data-target="" class="waves-effect waves-circle navicon back-button htmlmode show-on-large "><i class="mdi mdi-chevron-left" data-page=""></i></a>
 
-        <a href="#" data-target="slide-nav" class="waves-effect waves-circle navicon sidenav-trigger show-on-large"><i class="mdi mdi-menu"></i></a>
+          <a href="#" onclick="iniciarQR()" id="linkqr" class='waves-light btn-large bg-primary'>Escanear QR </a> <br><br>
+
+          <a href="#" onclick="usarQR()" class='waves-light btn-large bg-primary'>Usar QR no impreso</a>
 
 
 
-        <a href="#" data-target="slide-settings" class="waves-effect waves-circle navicon right sidenav-trigger show-on-large pulse"><i class="mdi mdi-tune"></i></a>
-
-        <a href="#" data-target="" class="waves-effect waves-circle navicon right nav-site-mode show-on-large"><i class="mdi mdi-invert-colors mdi-transition1"></i></a>
-      <!-- <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
-    </div>
-  </nav>
-<ul id="slide-nav" class="sidenav sidemenu">
-    <li class="menu-close"><i class="mdi mdi-close"></i></li>
-    <li class="user-wrap">
-      <div class="user-view row">
-      <!-- <div class="background">
-        <img src="assets/images/office.jpg">
-      </div> -->
-      <div class="col s3 imgarea">
-        <a href="#user"><img class="circle" src="assets/images/user-37.jpg"></a></div>
-      <div class="col s9 infoarea">
-        <a href="#name"><span class="name">Cherry Smith</span></a>
-        <a href="#email"><span class="email">cherrysmith@gmail.com</span></a>
-      </div>
-      </div>
-    </li>
-    
-
-    
-    </ul></li>
-      
-</ul>
-
-  <div class="container">
-    <div class="section">
-        <h5 class="pagetitle">Nueva agrupación</h5>
-        
-        <div class="divider"></div>
-        <div class="input-field col s12">
-          <input id="nombre" type="text" data-length="60">
-          <label for="nombre">Nombre</label>
-        </div>
-      
-      
-        <div class="input-field col s12">
-          <input id="descripcion" type="text" data-length="60">
-          <label for="descripcion">Descripción</label>
-        </div>
-
-        <div class="col s12">
-          <a class="waves-effect waves-light btn-large bg-primary " onclick="guardar()">Siguiente</a>
         </div>
 
 
-    </div>
 
-  </div>
-  </div>	
-
-
-
-
+<script>
+  function usarQR(){
+    window.location = '/agrupar_usarqr.html'
+  }
+</script>
 
 
 
 
-
-
-
-
-  <div class="backtotop">
-    <a class="btn-floating btn primary-bg">
-      <i class="mdi mdi-chevron-up"></i>
-    </a>
-  </div>
-
-
-
-
-   
 
 
 
@@ -195,44 +137,6 @@ if ("serviceWorker" in navigator) {
   }
 }
 
-
-
-function guardar() { 
-
-  
-  var url_string = window.location.href; //window.location.href
-  var url = new URL(url_string);
-  var idqr = url.searchParams.get("idqr");
-  var qr = url.searchParams.get("qr");
-
-  var formData = new FormData();
-  formData.append("nombre", $('#nombre').val());
-  formData.append("descripcion", $('#descripcion').val());
-  formData.append("qr", qr);
-  formData.append("idqr", idqr);
-
-
-  $.ajax({
-    //url: 'http://local.quattropy.com/comodin_stock/app/agrupar_1.php',
-    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/agrupar_1',
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false,
-    method: 'POST'
-  })
-  .done(function(data) {
-    console.log(data.data.lastId)
-    //alert("Ok")
-    window.location = './agrupar_2.html?id='+data.data.lastId
-
-  })
-  .fail(function() {alert("Error");});
-  }
-
-
-
-
 </script>
 
 
@@ -247,14 +151,22 @@ function guardar() {
 
 <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
 <script type="text/javascript">
-         $("input#nombre, textarea#descripcion").characterCounter();
- 
+  $(document).ready(function(){
 
-    
+      $(".carousel-fullscreen.carousel-slider").carousel({
+        fullWidth: true,
+        indicators: true,
+      }).css("height", $(window).height());
+      setTimeout(autoplay, 3500);
+      function autoplay() {
+          $(".carousel-fullscreen.carousel-slider").carousel("next");
+	      setTimeout(autoplay, 3500);
+      }
 
-    </script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+      
 
-<script src="cordova.js"></script>
+  });   </script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+
 
 <!-- CORE TEMPLATE JS - START --> 
 <script src="assets/js/init.js"></script>
@@ -268,7 +180,14 @@ function guardar() {
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function(){
     $('.preloader-background').delay(10).fadeOut('slow');
+
   });
+
+
+  
+
+
+
 </script>
 </body>
 </html>

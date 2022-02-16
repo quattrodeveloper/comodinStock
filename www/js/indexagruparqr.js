@@ -129,11 +129,7 @@ function prepare(){
                     console.log(data.data.existeqr) 
                     id = parseInt(data.data.existeqr);
                     if(id===0) {
-                      var url_string = window.location.href; //window.location.href
-                      var url = new URL(url_string);
-                      var id = url.searchParams.get("id");
-                      window.location = '/altaprod_3.html?qr='+codigo+'&idProducto='+id
-
+                      window.location = '/agrupar_1.html?qr='+codigo
                       $('#consola').html(result);
                       $('#consola').html(console.log(result));
                       console.log('Thing was saved to the database.');
