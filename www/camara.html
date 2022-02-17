@@ -44,7 +44,7 @@
         <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
         <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
@@ -109,7 +109,7 @@ function adjuntarfoto() {
 
 
   $.ajax({
-    url: 'http://local.quattropy.com/comodin_stock/app/cargar.php',
+    url: 'https://local.quattropy.com/comodin_stock/app/cargar.php',
     data: formData,
     cache: false,
     contentType: false,
@@ -118,7 +118,7 @@ function adjuntarfoto() {
   })
   .done(function(data) {
     console.log(data)
-    window.location = '/producto.html?idqr='+data+'&qr='+qr
+    window.location = './producto.html?idqr='+data+'&qr='+qr
   })
   .fail(function() {alert("error");});
 }

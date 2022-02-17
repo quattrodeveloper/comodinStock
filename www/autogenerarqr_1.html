@@ -41,9 +41,9 @@
   <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
   <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <!-- <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+  <!-- <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
     media="screen,projection" /> -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href=".//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
 
   <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
@@ -200,14 +200,14 @@
       var id = url.searchParams.get("id");
 
 
-      $.getJSON("http://local.quattropy.com/comodin_stock/s1/public/api/stock/getSeries", function (data) {
+      $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getSeries", function (data) {
 
         let cant = 0;
         $(data.data).each(function (i, val) {
           let coleccion = "";
           if (val['descripcion']) {
             cant++;
-            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie']  + ")</span><p>D: "+val['inactivos']+" U: " + val['activos'] +" T: "+val['total']+"</p></div><div class='secondary-content'><a href='http://local.quattropy.com/comodin_stock/s1/public/api/stock/getSerie?idserie="+ val['idserie']  +"'><i class='mdi mdi-printer-outline'></i></a></div></li>";
+            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie']  + ")</span><p>D: "+val['inactivos']+" U: " + val['activos'] +" T: "+val['total']+"</p></div><div class='secondary-content'><a href='https://local.quattropy.com/comodin_stock/s1/public/api/stock/getSerie?idserie="+ val['idserie']  +"'><i class='mdi mdi-printer-outline'></i></a></div></li>";
           }
           $('#cant').html('(' + cant + ')');
           $(coleccion).appendTo("#coleccionComponentes");
@@ -269,7 +269,7 @@
     //   formData.append("descripcion", $('#descripcion').val());
 
     //   $.ajax({
-    //     url: 'http://local.quattropy.com/comodin_stock/app/agrupar_1.php',
+    //     url: 'https://local.quattropy.com/comodin_stock/app/agrupar_1.php',
     //     data: formData,
     //     cache: false,
     //     contentType: false,

@@ -42,7 +42,7 @@
     <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
     <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+    <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
         media="screen,projection" />
     <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
         media="screen,projection" />
@@ -156,7 +156,7 @@
                     <li class='collection-item avatar'>
                         <div class='item-det'>
                             <img
-                                src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'>
+                                src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'>
                                 <span class='title'>Producto</span>
                             <p>Crear QR para un producto del catálogo</p>
                         </div>
@@ -167,7 +167,7 @@
                         <li class='collection-item avatar'>
                             <div class='item-det'>
                                 <img
-                                    src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'>
+                                    src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'>
                                     <span class='title'>Conjunto</span>
                                 <p>Crear QR para conjunto de productos disponibles</p>
                             </div>
@@ -217,7 +217,7 @@
             var url_string = window.location.href; //window.location.href
             var url = new URL(url_string);
             var id = url.searchParams.get("id");
-            window.location = '/agrupar_3_manual.html?id=' + id;
+            window.location = './agrupar_3_manual.html?id=' + id;
         }
 
         document.addEventListener("deviceready", coleccionProductos, false);
@@ -259,7 +259,7 @@
         }
 
         function siguiente(idProducto) {
-            window.location = '/altaprod_2.html?id=' + idProducto;
+            window.location = './altaprod_2.html?id=' + idProducto;
         }
 
         function pin() {

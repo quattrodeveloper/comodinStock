@@ -40,7 +40,7 @@
         <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
         <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
@@ -125,7 +125,7 @@
         <div class="input-field col s12">
             <input id="qr" type="text" data-length="60" style="width:40%;">
             <label for="qr" class="">Código del producto</label> 
-            <a class="waves-effect waves-light btn-large bg-primary " href="/desagrupar_qr.html"><i class="mdi mdi-qrcode"></i></a>
+            <a class="waves-effect waves-light btn-large bg-primary " href="./desagrupar_qr.html"><i class="mdi mdi-qrcode"></i></a>
         </div>
 
 
@@ -199,7 +199,7 @@ function guardar() {
   var formData = new FormData();
   formData.append("qr", qr);
   $.ajax({
-    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/eliminarProd?qr='+qr,
+    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/eliminarProd?qr='+qr,
     data: formData,
     cache: false,
     contentType: false,
@@ -210,7 +210,7 @@ function guardar() {
     console.log(data)
     //alert("Producto eliminado \n Nombre: "+data[0]['nombre']+" - "+data[0]['descripcion']);
 
-    window.location = '/';
+    window.location = './';
 
   })
   .fail(function() {alert("Error");});

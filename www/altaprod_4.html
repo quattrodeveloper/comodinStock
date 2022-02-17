@@ -403,7 +403,7 @@
 
           if (localStorage.getItem('idDeposito') !== '') {
             let idDeposito = localStorage.getItem('idDeposito')
-            $("a[id^='li-']").hide();
+            //$("a[id^='li-']").hide();
             $("#li-" + idDeposito).show();
             $('#check-' + idDeposito).removeClass("mdi-pin-outline colorgris"); //remover pin inactivo
             $('#check-' + idDeposito).addClass("mdi-pin colorgris"); //agregar pin activo  
@@ -531,7 +531,7 @@
         formData.append("descripcion", $('#descripcion').val());
 
         $.ajax({
-          // url: 'http://local.quattropy.com/comodin_stock/app/cargardb.php',
+          // url: 'https://local.quattropy.com/comodin_stock/app/cargardb.php',
           url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/cargarProd',
           data: formData,
           cache: false,

@@ -41,8 +41,9 @@
     <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
     <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
-    media="screen,projection" />
+    <!-- <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+    media="screen,projection" /> -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
 
     <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
         media="screen,projection" />
@@ -239,7 +240,7 @@
         function activarQR(idserie) {
 
             $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getQR?idserie=" + idserie, function (data) {
-                window.location = './agrupar_1.html?idqr='+data.data
+                window.location = '/agrupar_1.html?idqr='+data.data
             });
         }
 

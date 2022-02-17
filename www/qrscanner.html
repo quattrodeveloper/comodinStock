@@ -46,7 +46,7 @@
         <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
         <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
@@ -213,7 +213,7 @@ if ("serviceWorker" in navigator) {
                   var url_string = window.location.href; //window.location.href
                   var url = new URL(url_string);
                   var id = url.searchParams.get("id");
-                  window.location = '/camara.html?qr='+codigo+'&id='+id
+                  window.location = './camara.html?qr='+codigo+'&id='+id
 
                   $('#consola').html(result);
                   $('#consola').html(console.log(result));

@@ -57,7 +57,7 @@ document.addEventListener('ondeviceready', leerQR, false);
   formData.append("qr", codigo);
 
   $.ajax({
-    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/agrupar_2?idAgrupar='+id+'&qr='+codigo,
+    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/agrupar_2?idAgrupar='+id+'&qr='+codigo,
     data: formData,
     cache: false,
     contentType: false,
@@ -65,7 +65,7 @@ document.addEventListener('ondeviceready', leerQR, false);
     method: 'POST'
   })
   .done(function(data) {
-    window.location = '/agrupar_2.html?id='+id
+    window.location = './agrupar_2.html?id='+id
   })
   .fail(function() {alert("Error");});
 
@@ -130,7 +130,7 @@ document.addEventListener('ondeviceready', leerQR, false);
         <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
         <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
@@ -181,7 +181,7 @@ document.addEventListener('ondeviceready', leerQR, false);
         </div>
 
         <div class="center index-start">
-          <a href="/agrupar_3_manual.html" onclick="" id="escribircodigo" class='waves-light btn-large bg-primary' style="width:33%; display:none;">Cancelar</a>      
+          <a href="./agrupar_3_manual.html" onclick="" id="escribircodigo" class='waves-light btn-large bg-primary' style="width:33%; display:none;">Cancelar</a>      
         </div>
 
 

@@ -114,7 +114,7 @@ function adjuntarfoto() {
 
 
   $.ajax({
-    //url: 'http://local.quattropy.com/comodin_stock/app/cargarImg.php?idProducto='+idProducto,
+    //url: 'https://local.quattropy.com/comodin_stock/app/cargarImg.php?idProducto='+idProducto,
     url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/cargarImg?idProducto='+idProducto,
     data: formData,
     cache: false,
@@ -129,6 +129,8 @@ function adjuntarfoto() {
   })
   .fail(function(data) {
     console.log(data)
+    console.log(Object.values(data));
+
     alert("error");
   });
 }

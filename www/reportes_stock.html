@@ -42,7 +42,7 @@
   <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
   <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+  <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
   <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
@@ -196,7 +196,7 @@
       var url_string = window.location.href; //window.location.href
       var url = new URL(url_string);
       var id = url.searchParams.get("id");
-      window.location = '/agrupar_3_manual.html?id=' + id;
+      window.location = './agrupar_3_manual.html?id=' + id;
     }
 
     document.addEventListener("deviceready", coleccionProductos, false);
@@ -225,7 +225,7 @@
             }
 
 
-            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span><p>" + val['dep_nombre'] + "</p></div><div class='secondary-content'><span>D:" + val['disponibles'] + " </span><span>U:" + val['usados'] + " </span><span>T:" + val['total'] + " </span></div></li>";
+            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span><p>" + val['dep_nombre'] + "</p></div><div class='secondary-content'><span>D:" + val['disponibles'] + " </span><span>U:" + val['usados'] + " </span><span>T:" + val['total'] + " </span></div></li>";
             cant++;
           }
 
@@ -279,7 +279,7 @@
     }
 
     function siguiente(idProducto) {
-      window.location = '/altaprod_2.html?id=' + idProducto;
+      window.location = './altaprod_2.html?id=' + idProducto;
     }
 
     function pin() {

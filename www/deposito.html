@@ -40,7 +40,7 @@
         <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
         <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
@@ -394,7 +394,7 @@ function guardar() {
   formData.append("descripcion", $('#descripcion').val());
 
   $.ajax({
-    url: 'http://localhost/cargardb.php',
+    url: 'https://localhost/cargardb.php',
     data: formData,
     cache: false,
     contentType: false,
@@ -404,7 +404,7 @@ function guardar() {
   .done(function(data) {
     console.log(data)
     alert("Ok")
-    window.location = '/index.html'
+    window.location = './index.html'
 
   })
   .fail(function() {alert("Error");});

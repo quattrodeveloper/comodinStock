@@ -53,7 +53,7 @@ document.addEventListener('ondeviceready', leerQR, false);
   formData.append("qr", codigo);
 
   $.ajax({
-    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/desagrupar?qr='+codigo,
+    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/desagrupar?qr='+codigo,
     data: formData,
     cache: false,
     contentType: false,
@@ -65,7 +65,7 @@ document.addEventListener('ondeviceready', leerQR, false);
     alert('Ok');
     //alert("Producto eliminado \n Nombre: "+data[0]['nombre']+" - "+data[0]['descripcion']);
 
-    window.location = '/';
+    window.location = './';
 
   })
   .fail(function() {alert("Error");});
@@ -132,7 +132,7 @@ document.addEventListener('ondeviceready', leerQR, false);
         <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
         <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
