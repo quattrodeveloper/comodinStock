@@ -41,7 +41,7 @@
   <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
   <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+  <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
   <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
@@ -382,7 +382,7 @@
       var id = url.searchParams.get("id");
       */
 
-      $.getJSON("http://local.quattropy.com/comodin_stock/s1/public/api/stock/getDepositos", function (data) {
+      $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getDepositos", function (data) {
         
         let cant = 0;
         $(data.data).each(function (i, val) {
@@ -390,7 +390,7 @@
           let coleccion = "";
           let foto = 'pic.jpg';
           if (val['id']) {
-            coleccion = coleccion + "<a href='#' onclick='seleccionardeposito(" + val['id'] + ")' id='li-" + val['id'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id'] + "'><div class='item-det'><img src='http://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['nombre'] + "</span><p>" + val['ciudad'] + "</p></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id'] + "'></i></div></li></a>";
+            coleccion = coleccion + "<a href='#' onclick='seleccionardeposito(" + val['id'] + ")' id='li-" + val['id'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id'] + "'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['nombre'] + "</span><p>" + val['ciudad'] + "</p></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id'] + "'></i></div></li></a>";
             cant++;
             
           }
@@ -532,7 +532,7 @@
 
         $.ajax({
           // url: 'http://local.quattropy.com/comodin_stock/app/cargardb.php',
-          url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/cargarProd',
+          url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/cargarProd',
           data: formData,
           cache: false,
           contentType: false,

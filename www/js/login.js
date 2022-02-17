@@ -75,7 +75,7 @@ $("#submit").click(function(event) {
                 $("#msg_title").html( "Correcto!" );
                 $("#msg_text").html( "Ingresando al Sistema..." );
                 // console.log(data)
-                window.location.href = "./";
+                window.location.href = "./index.html";
 			},
 			error: function(xhr, textStatus, errorThrown){
 				console.log(xhr)

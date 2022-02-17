@@ -42,7 +42,7 @@
   <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
   <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+  <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
   <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
@@ -147,7 +147,7 @@
 
         <div class="input-field col s12">
           <i class="mdi mdi-magnify prefix"></i>
-          <textarea id="buscador" class="materialize-textarea" style="height: 42px; width:90%;"></textarea>
+          <textarea id="buscador" class="materialize-textarea" style="height: 42px; width:85%;"></textarea>
           <label for="buscador" class="" id="labelbuscador">Buscar...</label>
           <a href="#" onclick="pin()"><i class="mdi mdi-pin-outline prefix" id="pin"></i></a>
         </div>
@@ -205,10 +205,10 @@
       var id = url.searchParams.get("id");
       */
 
-      $.getJSON(config.urlServer+"getProductos", function (data) {
+      $.getJSON(config.urlServer + "getProductos", function (data) {
 
         let cant = 0;
-        if(data.status != "success"){
+        if (data.status != "success") {
           alert('no se puedo conectar')
         }
         $(data.data).each(function (i, val) {
@@ -230,8 +230,8 @@
           $(coleccion).appendTo("#coleccionProductos");
           $('#cant').html('(' + cant + ')')
 
-          if (localStorage.getItem('pin') !== '') {
-            var filtro = localStorage.getItem('pin');
+          if (localStorage.getItem('altaprod1')) {
+            var filtro = localStorage.getItem('altaprod1');
             lista(filtro)
             $("#buscador").val(filtro);
             $("#buscador").prop("disabled", true); //bloquear input
@@ -243,6 +243,7 @@
 
 
           }
+
 
           $("#buscador").keyup(function () {
             var filtro = $(this).val();
@@ -280,28 +281,70 @@
       window.location = './altaprod_2.html?id=' + idProducto;
     }
 
+
+
+    // document.addEventListener("deviceready", iniciarpin, false)
+
+    // function iniciarpin() {
+    //   var altaprod1 = localStorage.getItem('altaprod1')
+    //   if(altaprod1 !== '') {
+    //     $('#labelbuscador').hide()
+    //     $("#buscador").val(altaprod1)
+    //     bloquearpin()
+    //   }
+    //   lista($("#buscador").val())
+    // }
+
     function pin() {
-      if (localStorage.getItem('pin') == '' && $('#buscador').val() !== '') {
-        localStorage.setItem('pin', $('#buscador').val()); //guardar el input en la base de datos
-        $("#buscador").prop("disabled", true); //bloquear input
-        $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
-        $("#pin").addClass("mdi-pin"); //agregar pin activo
-
-      } else {
-        localStorage.setItem('pin', '');
-        $("#buscador").prop("disabled", false)
-        $("#buscador").val('')
-        $('#labelbuscador').show()
-        $("#pin").removeClass("mdi-pin")
-        $('#pin').addClass("mdi-pin-outline")
-
-        let filtro = ''
-        lista(filtro)
-
-
-
+      if (!$("#buscador").prop("disabled")) {
+        bloquearpin()
+      } else
+      if($("#buscador").prop("disabled")) {
+        desbloquearpin()
       }
+      
+
     }
+
+    // function pin() {
+    //   var altaprod1 = localStorage.getItem('altaprod1')
+    //   if (!altaprod1) {
+    //     var buscador = ''
+    //     localStorage.setItem('altaprod1', buscador)
+    //   } else {
+    //     bloquearpin()
+    //   }
+
+    //   if ($("#buscador").val()) {
+    //     bloquearpin()
+    //   }
+
+    // }
+
+    function bloquearpin() {
+      var altaprod1 = localStorage.getItem('altaprod1')
+      var buscador = $("#buscador").val()
+
+      localStorage.setItem('altaprod1', buscador); //guardar el input en la base de datos
+      $("#buscador").prop("disabled", true); //bloquear input
+      $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
+      $("#pin").addClass("mdi-pin"); //agregar pin activo
+      lista(buscador)
+    }
+    function desbloquearpin() {
+      localStorage.setItem('altaprod1', '');
+      $("#buscador").prop("disabled", false)
+      $("#buscador").val('')
+      $('#labelbuscador').show()
+      $("#pin").removeClass("mdi-pin")
+      $('#pin').addClass("mdi-pin-outline")
+
+      let filtro = ''
+      lista(filtro)
+    }
+
+
+
 
 
 
