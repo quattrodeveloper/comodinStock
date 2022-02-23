@@ -41,10 +41,8 @@
     <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
     <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <!-- <link href="assets/fonts/mdi/materialdesignicons.min.css" type="text/css" rel="stylesheet"
-    media="screen,projection" /> -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
-
+    <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
+        media="screen,projection" />
     <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
         media="screen,projection" />
 
@@ -76,6 +74,8 @@
             <div id="preloader"></div>
         </div>
     </div>
+
+
 
     <!-- START navigation -->
     <nav class="fixedtop topbar navigation" role="navigation">
@@ -116,8 +116,8 @@
                     <a href="#user"><img class="circle" src="assets/images/user-37.jpg"></a>
                 </div>
                 <div class="col s9 infoarea">
-                    <a href="#name"><span class="name">Usuario</span></a>
-                    <a href="#email"><span class="email">usuario@email.com</span></a>
+                    <a href="#name"><span class="name">Cherry Smith</span></a>
+                    <a href="#email"><span class="email">cherrysmith@gmail.com</span></a>
                 </div>
             </div>
         </li>
@@ -131,32 +131,80 @@
 
     <div class="container">
         <div class="section">
+            <h5 class="pagetitle">Agregar al catálogo</h5>
+            <div class="divider"></div>
 
-            <div class="row ">
-                <div class="col s12 pad-0">
-                    <h5 class="bot-20 sec-tit  ">Series de Cód. QR <span id="cant"></span></h5>
-                    <p>Cód. disponibles (D) <br>
-                        Cód. usados (U) <br>
-                        Total (T)
-                    </p>
-                    <ul class="collection invoice-item" id="coleccionComponentes">
-
-
-
-                    </ul>
-
-                    <div class="spacer"></div>
-
-
-                </div>
+            <div class="input-field col s12">
+                <input id="nombre" type="text" data-length="60">
+                <label for="nombre">Nombre</label>
             </div>
 
+
+
+                <div class="input-field col s12">
+                    <input id="codint" type="text" data-length="60">
+                    <label for="codint">Cod. Interno</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <input id="codfab" type="text" data-length="60">
+                    <label for="codfab">Cod. Fabricante</label>
+                </div>
+
+
+
+                <div class="input-field col s12">
+                    <input id="descripcion" type="text" data-length="60">
+                    <label for="descripcion">Descripción</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <div class="col s12 pad-0">
+                        <div class="switch">
+                            <label>
+                                <p class="bot-20 sec-tit  ">Tiene vencimiento
+                                    <input type="checkbox" id="tienevencimiento">
+                                    <span class="lever"></span>
+                                </p>
+                            </label>
+                        </div>
+                    </div>
+    
+    
+                    <div class="input-field col s12">
+    
+                        <div class="switch">
+                            <label>
+                                <p class="bot-20 sec-tit  ">Requiere mantenimiento
+                                    <input type="checkbox" id="mantenimiento">
+                                    <span class="lever"></span>
+                                </p>
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                <div class="col s12">
+                    
+                    <a class="waves-effect waves-light btn-large bg-primary " onclick="guardar()">Fotografiar producto ></a>
+                </div>
+
+
+            </div>
 
         </div>
     </div>
 
 
-    </div>
+
+
+
+
+
+
+
+
 
 
     <div class="backtotop">
@@ -164,41 +212,6 @@
             <i class="mdi mdi-chevron-up"></i>
         </a>
     </div>
-
-    <script>
-
-        document.addEventListener("deviceready", coleccionComponentes, false);
-        function coleccionComponentes() {
-            var url_string = window.location.href; //window.location.href
-            var url = new URL(url_string);
-            var id = url.searchParams.get("id");
-
-
-            $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getSeries", function (data) {
-
-                let cant = 0;
-                $(data.data).each(function (i, val) {
-                    let coleccion = "";
-                    if (val['descripcion']) {
-                        cant++;
-                        coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie'] + ")</span><p>D: " + val['inactivos'] + " U: " + val['activos'] + " T: " + val['total'] + "</p></div><div class='secondary-content'><a href='#' onclick='activarQR("+val['idserie']+")'><i class='mdi mdi-chevron-right'></i></a></div></li>";
-                    }
-                    $('#cant').html('(' + cant + ')');
-                    $(coleccion).appendTo("#coleccionComponentes");
-                });
-            });
-
-
-        }
-
-
-
-
-
-
-    </script>
-
-
 
 
 
@@ -215,6 +228,8 @@
     <!-- PWA Service Worker Code -->
 
     <script type="text/javascript">
+
+
         // This is the "Offline copy of pages" service worker
 
         // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
@@ -237,12 +252,38 @@
 
 
 
-        function activarQR(idserie) {
+        function guardar() {
 
-            $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getQR?idserie=" + idserie, function (data) {
-                window.location = '/agrupar_1.html?idqr='+data.data
-            });
+            var formData = new FormData();
+            formData.append("nombre", $('#nombre').val());
+            formData.append("codint", $('#codint').val());
+            formData.append("codfab", $('#codfab').val());
+            formData.append("tienevencimiento", $('#tienevencimiento').prop('checked'));
+            formData.append("mantenimiento", $('#mantenimiento').prop('checked'));
+            formData.append("descripcion", $('#descripcion').val());
+
+            $.ajax({
+                //url: 'https://local.quattropy.com/comodin_stock/app/agrupar_1.php',
+                url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/insertCatalogo',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST'
+            })
+                .done(function (data) {
+                    console.log(data.data)
+                    //alert("Ok")
+                    window.location = './insertCargarfoto.html?idProducto=' + data.data
+
+                })
+                .fail(function (data) {
+                    console.log(data)
+                    console.log(Object.values(data));
+                    alert("Error");
+                });
         }
+
 
 
 
@@ -265,6 +306,7 @@
 
 
 
+
     </script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
 
     <script src="cordova.js"></script>
@@ -283,7 +325,6 @@
             $('.preloader-background').delay(10).fadeOut('slow');
         });
     </script>
-
 </body>
 
 </html>
