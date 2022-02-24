@@ -187,6 +187,7 @@
   </style>
 
   <a href="./autogenerarqr_2.html" class="fab">+</a>
+  
   <script>
 
     document.addEventListener("deviceready", coleccionComponentes, false);
@@ -203,7 +204,8 @@
           let coleccion = "";
           if (val['descripcion']) {
             cant++;
-            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie'] + ")</span><p>D: " + val['inactivos'] + " U: " + val['activos'] + " T: " + val['total'] + "</p></div><div class='secondary-content'><a href='https://local.quattropy.com/comodin_stock/s1/public/api/stock/getSerie?idserie=" + val['idserie'] + "'><i class='mdi mdi-printer-outline'></i></a><a href='#' onclick='agregar(" + val['idserie'] + ")'><i class='mdi mdi-plus'></i></a></div></li>";
+            let total = parseInt(val['activos']) + parseInt(val['inactivos']) 
+            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie'] + ")</span><p>D: " + val['inactivos'] + " U: " + val['activos'] + " T: " + total + "</p></div><div class='secondary-content'><a href='#' onclick='email(" + val['idserie'] + ")'><i class='mdi mdi-email-outline'></i></a><a href='https://local.quattropy.com/comodin_stock/s1/public/api/stock/getSerie?idserie=" + val['idserie'] + "'><i class='mdi mdi-printer-outline'></i></a><a href='#' onclick='agregar(" + val['idserie'] + ")'><i class='mdi mdi-plus'></i></a></div></li>";
           }
           $('#cant').html('(' + cant + ')');
           $(coleccion).appendTo("#coleccionComponentes");
@@ -283,6 +285,34 @@
           console.log(data)
           alert("Error");
         });
+
+    }
+
+    function email(idserie) {
+
+      var formData = new FormData();
+      let para = window.prompt('Para:')
+      formData.append("para", para);
+      formData.append("idserie", idserie);
+
+
+      // $.ajax({
+      //   url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/agregarqr',
+      //   data: formData,
+      //   cache: false,
+      //   contentType: false,
+      //   processData: false,
+      //   method: 'POST'
+      // })
+      //   .done(function (data) {
+      //     console.log(data)
+      //     alert("Operación exitosa")
+      //     window.location = './autogenerarqr_1.html'
+      //   })
+      //   .fail(function (data) {
+      //     console.log(data)
+      //     alert("Error");
+      //   });
 
     }
 
