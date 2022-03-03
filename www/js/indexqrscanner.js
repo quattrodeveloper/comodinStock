@@ -132,7 +132,7 @@ function prepare(){
                       var url_string = window.location.href; //window.location.href
                       var url = new URL(url_string);
                       var id = url.searchParams.get("id");
-                      window.location = '/altaprod_3.html?qr='+codigo+'&idProducto='+id
+                      window.location = './altaprod_3.html?qr='+codigo+'&idProducto='+id
 
                       $('#consola').html(result);
                       $('#consola').html(console.log(result));
