@@ -71,6 +71,8 @@ $("#submit").click(function(event) {
                 localStorage.img = data.data.img;
                 localStorage.user = data.data.user;
                 localStorage.rol = data.data.rol;
+				localStorage.idusu = data.data.id_usu;
+
                 $("#msg_alert").addClass("new badge teal lighten-2");
                 $("#msg_title").html( "Correcto!" );
                 $("#msg_text").html( "Ingresando al Sistema..." );

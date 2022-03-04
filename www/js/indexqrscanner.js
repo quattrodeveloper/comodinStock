@@ -118,7 +118,7 @@ function prepare(){
                   
 
                   $.ajax({
-                    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/existeqr?qr='+codigo,
+                    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/existeqr?qr='+codigo,
                     data: '',
                     cache: false,
                     contentType: false,
@@ -132,8 +132,9 @@ function prepare(){
                       var url_string = window.location.href; //window.location.href
                       var url = new URL(url_string);
                       var id = url.searchParams.get("id");
-                      window.location = './altaprod_3.html?qr='+codigo+'&idProducto='+id
-
+                      let direccion  = './altaprod_3.html?qr='+codigo+'&idProducto='+id
+                      window.location = direccion
+                      
                       $('#consola').html(result);
                       $('#consola').html(console.log(result));
                       console.log('Thing was saved to the database.');

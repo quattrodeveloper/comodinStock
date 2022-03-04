@@ -118,7 +118,7 @@ function prepare(){
                   
 
                   $.ajax({
-                    url: 'http://local.quattropy.com/comodin_stock/s1/public/api/stock/existeqr?qr='+codigo,
+                    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/existeqr?qr='+codigo,
                     data: '',
                     cache: false,
                     contentType: false,

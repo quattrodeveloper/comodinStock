@@ -261,6 +261,7 @@
             formData.append("tienevencimiento", $('#tienevencimiento').prop('checked'));
             formData.append("mantenimiento", $('#mantenimiento').prop('checked'));
             formData.append("descripcion", $('#descripcion').val());
+            formData.append("idusu", localStorage.getItem('idusu'));
 
             $.ajax({
                 //url: 'https://local.quattropy.com/comodin_stock/app/agrupar_1.php',

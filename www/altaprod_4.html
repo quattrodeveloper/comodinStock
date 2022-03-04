@@ -522,6 +522,7 @@
         var qr = url.searchParams.get("qr");
         var id = url.searchParams.get("id");
         var idDeposito = localStorage.getItem('idDeposito');
+
         var formData = new FormData();
 
         formData.append("id", id);
@@ -529,6 +530,10 @@
         formData.append("idDeposito", idDeposito);
 
         formData.append("descripcion", $('#descripcion').val());
+
+        for (var value of formData.values()) {
+           console.log(value);
+         }
 
         $.ajax({
           // url: 'https://local.quattropy.com/comodin_stock/app/cargardb.php',
@@ -541,11 +546,17 @@
         })
           .done(function (data) {
             console.log(data)
-            alert("Ok")
-            window.location = './index.html'
+            
+            let confirmar = window.confirm('Operacion exitosa')
+            if (confirmar) {
+              window.location = './index.html'
+            }
 
           })
-          .fail(function () { alert("Error"); });
+          .fail(function (data) {
+            console.log(data)
+            alert("Error");
+          });
       } else {
         alert("Seleccione un depósito.")
       }
