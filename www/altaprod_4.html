@@ -416,11 +416,14 @@
           $('#cant').html('(' + cant + ')')
 
           if (localStorage.getItem('idDeposito') !== '') {
-            let idDeposito = localStorage.getItem('idDeposito')
             $("a[id^='li-']").hide();
-            $("#li-" + idDeposito).show();
+            let idDeposito = localStorage.getItem('idDeposito')
+            let li = "#li-" + idDeposito;
+            $(li).show();
             $('#check-' + idDeposito).removeClass("mdi-pin-outline colorgris"); //remover pin inactivo
             $('#check-' + idDeposito).addClass("mdi-pin colorgris"); //agregar pin activo  
+          } else {
+            $("a[id^='li-']").show();
           }
 
         });
