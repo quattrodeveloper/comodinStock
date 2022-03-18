@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class=" ">
+    <head>
+      
+  <script src="cordova.js"></script>
+
+        <!-- 
+         * @Package: Comodin Stock
+         * @Author: Comodin Stock
+         * @Version: 1.0
+        -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+        <title>Stock</title>
+        <meta content="Comodin Stock" name="description" />
+        <meta content="Comodin Stock" name="author" />
+
+
+    <!-- App Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+        <!-- CORE CSS FRAMEWORK - START -->
+        <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+        <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+        <!-- CORE CSS FRAMEWORK - END -->
+
+        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+                <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+
+        <!-- CORE CSS TEMPLATE - START -->
+
+        
+                <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" id="main-style"/>
+        <!-- CORE CSS TEMPLATE - END -->
+        <script>
+            document.addEventListener('deviceready', onDeviceReady, false);
+            let isDeviceReady = false;
+            
+            function onDeviceReady() {
+                isDeviceReady = true;
+                capturarFoto(document.getElementById('imgfoto'))
+            }
+            
+            function capturarFoto(img) {
+                /* Front Camera , disable save to phone ,
+                    data url , quality 60 . */
+                if (isDeviceReady) {
+                    let opciones = {
+                        cameraDirection: Camera.Direction.FRONT,
+                        saveToPhotoAlbum: false,
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        quality: 60
+                    };
+            
+                    function capturadeimg(image) {
+                        img.src = `data:image/jpeg;base64,${image }`;
+                    }
+            
+                    function errorimg(errorMsg) {
+                        console.log(errorMsg);
+                    }
+                    navigator.camera.getPicture(capturadeimg, errorimg, opciones);
+                }
+            }
+            </script>
+  <script>
+
+function adjuntarfoto() { 
+  var url_string = window.location.href; //window.location.href
+  var url = new URL(url_string);
+  var qr = url.searchParams.get("qr");
+  var idProducto = url.searchParams.get("idProducto");
+
+  var formData = new FormData();
+
+  var blob1 = generateBlob($('#imgfoto').attr('src'))
+
+  formData.append("imgProducto[]", blob1, "img.png");
+
+  formData.append("idProducto", idProducto);
+
+
+
+  for (var value of formData.values()) {
+      console.log(value);
+  }
+
+
+
+  $.ajax({
+    //url: 'https://local.quattropy.com/comodin_stock/app/cargarImg.php?idProducto='+idProducto,
+    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/foto1?idProducto='+idProducto,
+    data: formData,
+    cache: false,
+    contentType: false,
+    processData: false,
+    method: 'POST'
+  })
+  .done(function(data) {
+    console.log(data)
+    id = data.data;
+    let direccion = './regfoto_3.html?idProducto='+idProducto
+    window.location = direccion
+  })
+  .fail(function(data) {
+    console.log(data)
+    console.log(Object.values(data));
+
+    alert("error");
+  });
+}
+
+
+function generateBlob(img){
+  try {
+    var dataUrl = img
+    // Split the base64 string in data and contentType
+    var block = dataUrl.split(";");
+    // Get the content type of the image
+    var contentType = block[0].split(":")[1];// In this case "image/gif"
+    // get the real base64 content of the file
+    var realData = block[1].split(",")[1];// In this case "R0lGODlhPQBEAPeoAJosM...."
+    // Convert it to a blob to upload
+    var blob = b64toBlob(realData, contentType);
+    return blob;
+    
+  } catch (error) {
+
+    STATUS = false;
+    return ""
+  }
+}
+
+function b64toBlob(b64Data, contentType, sliceSize) {
+  try {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      var slice = byteCharacters.slice(offset, offset + sliceSize);
+  
+      var byteNumbers = new Array(slice.length);
+      for (var i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+  
+      var byteArray = new Uint8Array(byteNumbers);
+  
+      byteArrays.push(byteArray);
+    }
+  
+    var blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+    
+  } catch (error) {
+    STATUS = false;
+    return ""
+  }
+}
+
+
+  </script>
+
+    </head>
+    <!-- END HEAD -->
+
+    <!-- BEGIN BODY -->
+
+    <style>
+        video, .imgfoto {
+            display:block;
+            position:fixed;
+            top:50%;
+            left:50%;
+            width:auto;
+            height:auto;
+            min-width:100%;
+            min-height:100%;
+            z-index:-100;
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform:translateX(-50%) translateY(-50%);
+            background-size:cover;
+            background-position:50% 50%;
+            background-color:#FFF;
+        }
+
+button {
+    width: 80%;
+    margin: 0 10%;
+    height: 38px;
+    line-height: 38px;
+    font-size: 14px;
+    background-color: #9575CD;
+    height: 54px;
+    line-height: 54px;
+    font-size: 15px;
+    padding: 0 28px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    letter-spacing: .5px;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+    </style>
+    <body class="  isfullscreen  html"  data-header="light" data-footer="dark"  data-header_align="center"  data-menu_type="left" data-menu="light" data-menu_icons="on" data-footer_type="left" data-site_mode="light" data-footer_menu="show" data-footer_menu_style="light" >
+        <div class="preloader-background">
+            <div class="preloader-wrapper">
+                <div id="preloader"></div>
+            </div>
+        </div>
+        <img id="imgfoto" name="imgfoto" class="imgfoto" />
+
+        <div class="center index-start">
+
+
+          <a href="#" onclick="adjuntarfoto()" id="btnadjuntarfoto" class='waves-light btn-large bg-primary'>ADJUNTAR FOTO</a>
+<br><br>
+          <a href="#" onclick="capturarFoto(document.getElementById('imgfoto'))" id="btnfotografiar" class='waves-light btn-large bg-primary'>VOLVER A FOTOGRAFIAR</a>
+
+
+
+        </div>
+
+
+
+<!-- PWA Service Worker Code -->
+
+<script type="text/javascript">
+  // This is the "Offline copy of pages" service worker
+
+// Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+
+// Check compatibility for the browser we're running this in
+if ("serviceWorker" in navigator) {
+  if (navigator.serviceWorker.controller) {
+    console.log("[PWA Builder] active service worker found, no need to register");
+  } else {
+    // Register the service worker
+    navigator.serviceWorker
+      .register("pwabuilder-sw.js", {
+        scope: "./"
+      })
+      .then(function (reg) {
+        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+      });
+  }
+}
+
+</script>
+
+
+<!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
+
+<!-- CORE JS FRAMEWORK - START --> 
+<script src="assets/js/jquery-2.2.4.min.js"></script>
+<script src="assets/js/materialize.js"></script>
+<script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script> 
+<!-- CORE JS FRAMEWORK - END --> 
+
+
+<!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START --> 
+<script type="text/javascript">
+  $(document).ready(function(){
+
+
+      $(".carousel-fullscreen.carousel-slider").carousel({
+        fullWidth: true,
+        indicators: true,
+      }).css("height", $(window).height());
+      setTimeout(autoplay, 3500);
+      function autoplay() {
+          $(".carousel-fullscreen.carousel-slider").carousel("next");
+	      setTimeout(autoplay, 3500);
+      }
+
+      
+
+  });   </script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END --> 
+
+
+<!-- CORE TEMPLATE JS - START --> 
+<script src="assets/js/init.js"></script>
+<script src="assets/js/settings.js"></script>
+
+<script src="assets/js/scripts.js"></script>
+
+<!-- END CORE TEMPLATE JS - END --> 
+
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(){
+    $('.preloader-background').delay(10).fadeOut('slow');
+
+
+  });
+</script>
+</body>
+</html>
+
+
+

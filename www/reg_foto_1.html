@@ -190,13 +190,6 @@
 
   <script>
 
-    function agrupar_3() {
-      var url_string = window.location.href; //window.location.href
-      var url = new URL(url_string);
-      var id = url.searchParams.get("id");
-      window.location = './agrupar_3_manual.html?id=' + id;
-    }
-
     document.addEventListener("deviceready", coleccionProductos, false);
     function coleccionProductos() {
       /*
@@ -278,7 +271,7 @@
     }
 
     function siguiente(idProducto) {
-      window.location = './altaprod_2.html?id=' + idProducto;
+      window.location = './reg_foto_2.html?id=' + idProducto;
     }
 
 
@@ -299,10 +292,10 @@
       if (!$("#buscador").prop("disabled")) {
         bloquearpin()
       } else
-        if ($("#buscador").prop("disabled")) {
-          desbloquearpin()
-        }
-
+      if($("#buscador").prop("disabled")) {
+        desbloquearpin()
+      }
+      
 
     }
 
@@ -374,10 +367,11 @@
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
   <script type="text/javascript">
     $("input#nombre, textarea#descripcion").characterCounter();
-  </script>
-  <script src="./js/localizacion.js"></script>
 
-  <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
+
+
+
+  </script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
 
   <script src="cordova.js"></script>
 

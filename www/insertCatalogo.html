@@ -263,6 +263,12 @@
             formData.append("descripcion", $('#descripcion').val());
             formData.append("idusu", localStorage.getItem('idusu'));
 
+            formData.append("lat", localStorage.getItem('lat'));
+            formData.append("lon", localStorage.getItem('lon'));
+            formData.append("precision", localStorage.getItem('precision'));
+            formData.append("ubicacion_hora", localStorage.getItem('ubicacion_hora'));
+
+
             $.ajax({
                 //url: 'https://local.quattropy.com/comodin_stock/app/agrupar_1.php',
                 url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/insertCatalogo',
@@ -301,6 +307,8 @@
 
 
     <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
+    <script src="./js/localizacion.js"></script>
+
     <script type="text/javascript">
         $("input#nombre, textarea#descripcion").characterCounter();
 
