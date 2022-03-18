@@ -325,16 +325,30 @@
       </div>
 
       <div class="row ">
+
         <div class="col s12 pad-0">
+          <div class="input-field col s12">
+            <select id="estado" name="estado" style="display:inline">
+              <option value="" disabled>Estado de la máquina</option>
+              <option value="1" selected>Operativa</option>
+              <option value="2">En transito</option>
+              <option value="3">En reparación</option>
+              <option value="-1">Desactivada</option>
+            </select>
+          </div>
 
+        </div>
+      </div>
+      <div class="row ">
 
-
+        <div class="col s12 pad-0">
           <div class="input-field col s12">
             <textarea id="descripcion" class="materialize-textarea" data-length="240"></textarea>
             <label for="descripcion">Observación...</label>
           </div>
 
         </div>
+
       </div>
 
       <div class="row ">
@@ -394,7 +408,7 @@
             cant++;
 
           }
-          console.log(coleccion);
+          //console.log(coleccion);
 
           // $('#coleccionProductos').append(coleccion);
           $(coleccion).appendTo("#coleccionProductos");
@@ -403,7 +417,7 @@
 
           if (localStorage.getItem('idDeposito') !== '') {
             let idDeposito = localStorage.getItem('idDeposito')
-            //$("a[id^='li-']").hide();
+            $("a[id^='li-']").hide();
             $("#li-" + idDeposito).show();
             $('#check-' + idDeposito).removeClass("mdi-pin-outline colorgris"); //remover pin inactivo
             $('#check-' + idDeposito).addClass("mdi-pin colorgris"); //agregar pin activo  
@@ -530,6 +544,8 @@
         formData.append("idDeposito", idDeposito);
 
         formData.append("descripcion", $('#descripcion').val());
+        
+        formData.append("estado", $('#estado').val());
 
         formData.append("lat", localStorage.getItem('lat'));
         formData.append("lon", localStorage.getItem('lon'));
