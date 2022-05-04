@@ -2,6 +2,8 @@
 <html class=" ">
 
 <head>
+  <script src="./js/session_page.js"></script>
+
   <!-- 
          * @Package: Comodin Stock
          * @Author: themepassion
@@ -135,6 +137,12 @@
         <div class="col s12 pad-0">
           <h5 class="bot-20 sec-tit  ">Series de Cód. QR <span id="cant"></span></h5>
           <p>Cód. disponibles (D) Cód. usados (U) Total (T)</p>
+          <div class="input-field col s12">
+            <i class="mdi mdi-magnify prefix"></i>
+            <textarea id="buscador" class="materialize-textarea" style="height: 42px; width:85%;"></textarea>
+            <label for="buscador" class="" id="labelbuscador">Buscar...</label>
+            <a href="#" onclick="pin()"><i class="mdi mdi-pin-outline prefix" id="pin"></i></a>
+          </div>
           <ul class="collection invoice-item" id="coleccionComponentes">
 
 
@@ -209,6 +217,7 @@
           }
           $('#cant').html('(' + cant + ')');
           $(coleccion).appendTo("#coleccionComponentes");
+          cargarLista()
         });
       });
 
@@ -354,7 +363,10 @@
     document.addEventListener("DOMContentLoaded", function () {
       $('.preloader-background').delay(10).fadeOut('slow');
     });
+    let nombrelista = 'autogenerarqr1'
+
   </script>
+  <script src="./js/lista.js"></script>
 
 </body>
 

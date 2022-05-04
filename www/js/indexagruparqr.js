@@ -116,6 +116,9 @@ function prepare(){
                 if (confirm('Cód.: ' + codigo + ' ¿Desea continuar?')) {
                   // Save it!
                   
+                  var url_string = window.location.href; //window.location.href
+                  var url = new URL(url_string);
+                  var idproducto = url.searchParams.get("idproducto");
 
                   $.ajax({
                     url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/existeqr?qr='+codigo,
@@ -129,7 +132,7 @@ function prepare(){
                     console.log(data.data.existeqr) 
                     id = parseInt(data.data.existeqr);
                     if(id===0) {
-                      window.location = './agrupar_1.html?qr='+codigo
+                      window.location = './agrupar_1.html?qr='+codigo+'&idproducto='+idproducto
                       $('#consola').html(result);
                       $('#consola').html(console.log(result));
                       console.log('Thing was saved to the database.');

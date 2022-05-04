@@ -117,8 +117,8 @@
                     <a href="#user"><img class="circle" src="assets/images/user-37.jpg"></a>
                 </div>
                 <div class="col s9 infoarea">
-                    <a href="#name"><span class="name">Cherry Smith</span></a>
-                    <a href="#email"><span class="email">cherrysmith@gmail.com</span></a>
+                    <a href="#name"><span class="name">Usuario</span></a>
+                    <a href="#email"><span class="email">usuario@email.com</span></a>
                 </div>
             </div>
         </li>
@@ -131,80 +131,43 @@
     </ul>
 
     <div class="container">
+
         <div class="section">
-            <h5 class="pagetitle">Agregar al catálogo</h5>
+            <h5 class="pagetitle">Catálogo de productos <span id="cant"></span></h5>
+            <p id="descripcion"></p>
             <div class="divider"></div>
-
-            <div class="input-field col s12">
-                <input id="nombre" type="text" data-length="60">
-                <label for="nombre">Nombre</label>
-            </div>
+        </div>
 
 
-
-            <div class="input-field col s12">
-                <input id="codint" type="text" data-length="60">
-                <label for="codint">Cod. Interno</label>
-            </div>
-
-            <div class="input-field col s12">
-                <input id="codfab" type="text" data-length="60">
-                <label for="codfab">Cod. Fabricante</label>
-            </div>
+        <div class="section">
 
 
 
-            <div class="input-field col s12">
-                <input id="descripcion" type="text" data-length="60">
-                <label for="descripcion">Descripción</label>
-            </div>
-
-            <div class="input-field col s12">
-                <select id="tipoagrupacion" name="tipoagrupacion">
-                    <option value="" disabled>Tipo de agrupación</option>
-                    <option value="0" selected>Tipo materia prima</option>
-                    <option value="1">Tipo máquina</option>
-                </select>
-                <label>Tipo de agrupación</label>
-            </div>
-
-            <div class="input-field col s12">
-                <div class="col s12 pad-0">
-                    <div class="switch">
-                        <label>
-                            <p class="bot-20 sec-tit  ">Tiene vencimiento
-                                <input type="checkbox" id="tienevencimiento">
-                                <span class="lever"></span>
-                            </p>
-                        </label>
-                    </div>
-                </div>
-
+            <div class="row ">
 
                 <div class="input-field col s12">
-
-                    <div class="switch">
-                        <label>
-                            <p class="bot-20 sec-tit  ">Requiere mantenimiento
-                                <input type="checkbox" id="mantenimiento">
-                                <span class="lever"></span>
-                            </p>
-                        </label>
-                    </div>
+                    <i class="mdi mdi-magnify prefix"></i>
+                    <textarea id="buscador" class="materialize-textarea" style="height: 42px; width:85%;"></textarea>
+                    <label for="buscador" class="" id="labelbuscador">Buscar...</label>
+                    <a href="#" onclick="pin()"><i class="mdi mdi-pin-outline prefix" id="pin"></i></a>
                 </div>
 
-   
+                <ul class="collection invoice-item" id="coleccionProductos">
 
-                <div class="col s12">
+                </ul>
 
-                    <a class="waves-effect waves-light btn-large bg-primary " onclick="guardar()">Fotografiar producto
-                        ></a>
-                </div>
+                <div class="spacer"></div>
 
 
             </div>
-
         </div>
+
+
+    </div>
+
+    </div>
+
+
     </div>
 
 
@@ -225,86 +188,164 @@
     </div>
 
 
+    <script>
+
+        function agrupar_3() {
+            var url_string = window.location.href; //window.location.href
+            var url = new URL(url_string);
+            var id = url.searchParams.get("id");
+            window.location = './agrupar_3_manual.html?id=' + id;
+        }
+
+        document.addEventListener("deviceready", coleccionProductos, false);
+        function coleccionProductos() {
+
+            var url_string = window.location.href; //window.location.href
+            var url = new URL(url_string);
+            var idserie = url.searchParams.get("idserie");
 
 
 
 
+            $.getJSON(config.urlServer + "tipoMaquina", function (data) {
+
+                let cant = 0;
+                if (data.status != "success") {
+                    alert('no se puedo conectar')
+                }
+                $(data.data).each(function (i, val) {
+
+                    $('#titulo').html(val['descripcion_serie']);
+                    $('#descripcion').html(val['descripcion_serie']);
+                    let coleccion = "";
+                    let foto = 'pic.jpg';
+                    if (val['prod_foto']) {
+                        foto = val['prod_foto'];
+                    }
+
+
+                    coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><a href='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/" + foto + "'><img src='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/" + foto + "' alt='' class='circle'></a><span class='title'>" + val['prod_nombre'] + "</span><p><span>" + val['prod_descrip'].substring(0, 60) + "</span></p></div><div class='secondary-content'><a href='./agrupar_leeqr.html?idproducto="+val['id']+"'><i class='mdi mdi-chevron-right'></i></a></div></li>";
+                    cant++;
+
+
+                    $(coleccion).appendTo("#coleccionProductos");
+                    $('#cant').html('(' + cant + ')')
+
+                    if (localStorage.getItem('agrupartipo')) {
+                        var filtro = localStorage.getItem('agrupartipo');
+                        lista(filtro)
+                        $("#buscador").val(filtro);
+                        $("#buscador").prop("disabled", true); //bloquear input
+                        $('#labelbuscador').hide(); //borrar el label
+                        $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
+                        $("#pin").addClass("mdi-pin"); //agregar pin activo
 
 
 
 
+                    }
+
+
+                    $("#buscador").keyup(function () {
+                        var filtro = $(this).val();
+                        lista(filtro)
 
 
 
-    <!-- PWA Service Worker Code -->
-
-    <script type="text/javascript">
-
-
-        // This is the "Offline copy of pages" service worker
-
-        // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-
-        // Check compatibility for the browser we're running this in
-        if ("serviceWorker" in navigator) {
-            if (navigator.serviceWorker.controller) {
-                console.log("[PWA Builder] active service worker found, no need to register");
-            } else {
-                // Register the service worker
-                navigator.serviceWorker
-                    .register("pwabuilder-sw.js", {
-                        scope: "./"
-                    })
-                    .then(function (reg) {
-                        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
                     });
-            }
-        }
 
 
 
-        function guardar() {
-
-            var formData = new FormData();
-            formData.append("nombre", $('#nombre').val());
-            formData.append("codint", $('#codint').val());
-            formData.append("codfab", $('#codfab').val());
-            formData.append("tienevencimiento", $('#tienevencimiento').prop('checked'));
-            formData.append("mantenimiento", $('#mantenimiento').prop('checked'));
-            formData.append("descripcion", $('#descripcion').val());
-            formData.append("idusu", localStorage.getItem('idusu'));
-
-
-            formData.append("lat", localStorage.getItem('lat'));
-            formData.append("lon", localStorage.getItem('lon'));
-            formData.append("precision", localStorage.getItem('precision'));
-            formData.append("ubicacion_hora", localStorage.getItem('ubicacion_hora'));
-
-            formData.append("tipoagrupacion", $('#tipoagrupacion').val());
-
-
-
-            $.ajax({
-                //url: 'https://local.quattropy.com/comodin_stock/app/agrupar_1.php',
-                url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/insertCatalogo',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                method: 'POST'
-            })
-                .done(function (data) {
-                    console.log(data.data)
-                    //alert("Ok")
-                    window.location = './insertCargarfoto.html?idProducto=' + data.data
-
-                })
-                .fail(function (data) {
-                    console.log(data)
-                    console.log(Object.values(data));
-                    alert("Error");
                 });
+
+
+            });
+
+
         }
+
+        function lista(filtro) {
+            let cant = 0;
+            $("ul li").each(function () {
+                if ($(this).text().search(new RegExp(filtro, "i")) < 0) {
+                    $(this).hide();
+                } else {
+                    $(this).show()
+                    cant++;
+                }
+            });
+            if (filtro == '') { cant = cant - 2; }
+            $('#cant').html('(' + cant + ')')
+        }
+
+        function editarqr(qr_code) {
+            alert('Editar qr activo');
+        }
+
+
+
+        // document.addEventListener("deviceready", iniciarpin, false)
+
+        // function iniciarpin() {
+        //   var agrupartipo = localStorage.getItem('agrupartipo')
+        //   if(agrupartipo !== '') {
+        //     $('#labelbuscador').hide()
+        //     $("#buscador").val(agrupartipo)
+        //     bloquearpin()
+        //   }
+        //   lista($("#buscador").val())
+        // }
+
+        function pin() {
+            if (!$("#buscador").prop("disabled")) {
+                bloquearpin()
+            } else
+                if ($("#buscador").prop("disabled")) {
+                    desbloquearpin()
+                }
+
+
+        }
+
+        // function pin() {
+        //   var agrupartipo = localStorage.getItem('agrupartipo')
+        //   if (!agrupartipo) {
+        //     var buscador = ''
+        //     localStorage.setItem('agrupartipo', buscador)
+        //   } else {
+        //     bloquearpin()
+        //   }
+
+        //   if ($("#buscador").val()) {
+        //     bloquearpin()
+        //   }
+
+        // }
+
+        function bloquearpin() {
+            var agrupartipo = localStorage.getItem('agrupartipo')
+            var buscador = $("#buscador").val()
+
+            localStorage.setItem('agrupartipo', buscador); //guardar el input en la base de datos
+            $("#buscador").prop("disabled", true); //bloquear input
+            $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
+            $("#pin").addClass("mdi-pin"); //agregar pin activo
+            lista(buscador)
+        }
+        function desbloquearpin() {
+            localStorage.setItem('agrupartipo', '');
+            $("#buscador").prop("disabled", false)
+            $("#buscador").val('')
+            $('#labelbuscador').show()
+            $("#pin").removeClass("mdi-pin")
+            $('#pin').addClass("mdi-pin-outline")
+
+            let filtro = ''
+            lista(filtro)
+        }
+
+
+
 
 
 
@@ -312,27 +353,32 @@
     </script>
 
 
+
+
+
+
+
+
+
+
+
     <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
 
     <!-- CORE JS FRAMEWORK - START -->
     <script src="assets/js/jquery-2.2.4.min.js"></script>
+    <script src="./js/config.js"></script>
     <script src="assets/js/materialize.js"></script>
     <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <!-- CORE JS FRAMEWORK - END -->
 
 
     <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
-    <script src="./js/localizacion.js"></script>
-
     <script type="text/javascript">
         $("input#nombre, textarea#descripcion").characterCounter();
-        $("select").formSelect();
+    </script>
+    <script src="./js/localizacion.js"></script>
 
-
-
-
-
-    </script><!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
+    <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
 
     <script src="cordova.js"></script>
 
@@ -350,6 +396,7 @@
             $('.preloader-background').delay(10).fadeOut('slow');
         });
     </script>
+
 </body>
 
 </html>

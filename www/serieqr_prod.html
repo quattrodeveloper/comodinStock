@@ -222,7 +222,7 @@
 
                     gps = "";
                     if (val['lat_gps']) {
-                             gps = "<a href='#' onclick='gps('" + val['lat_gps'] + "'','" + val['lon_gps'] + "'')'><i class='mdi mdi-crosshairs-gps'></i></a>";
+                             gps = "<a href='#' onclick='gps('" + val['lat_gps'] + "','" + val['lon_gps'] + "')'><i class='mdi mdi-crosshairs-gps'></i></a>";
                         }
                         else {
                              gps = "";
@@ -233,7 +233,7 @@
                         }
                         
 
-                        coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><a href='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/" + foto + "'><img src='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/" + foto + "' alt='' class='circle'></a><span class='title'>" + val['prod_nombre'] + "(" + val['qr_code'] + ")</span><p><i class='mdi mdi-archive'></i><span>" + val['dep_nombre'].substring(0, 10) + "</span> " + val['descripcion'].substring(0, 10) +" "+ val['fecha_activacion'].substring(0, 10) + " " + val['prod_estado'] + "</p></div><div class='secondary-content'>" + gps + "<a href='#' onclick='editarqr("+val['qr_code']+")'><i class='mdi mdi-chevron-right'></i></a></div></li>";
+                        coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><a href='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/" + foto + "'><img src='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/" + foto + "' alt='' class='circle'></a><span class='title'>" + val['prod_nombre'] + "(" + val['qr_code'] + ")</span><p><i class='mdi mdi-archive'></i><span>" + val['dep_nombre'].substring(0, 10) + "</span> " + val['descripcion'].substring(0, 10) +" "+ val['fecha_activacion'].substring(0, 10) + " " + val['prod_estado'] + "</p></div><div class='secondary-content'>" + gps + "<a href='#' onclick='editarqr('"+val['qr_code']+"')'><i class='mdi mdi-chevron-right'></i></a></div></li>";
                         cant++;
                     }
 

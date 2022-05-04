@@ -309,20 +309,21 @@
 
     <div class="section">
 
-
-
       <div class="row ">
 
-
+        <div class="input-field col s12">
+          <i class="mdi mdi-magnify prefix"></i>
+          <textarea id="buscador" class="materialize-textarea" style="height: 42px; width:85%;"></textarea>
+          <label for="buscador" class="" id="labelbuscador">Buscar...</label>
+          <a href="#" onclick="pin()"><i class="mdi mdi-pin-outline prefix" id="pin"></i></a>
+        </div>
 
         <ul class="collection invoice-item" id="coleccionProductos">
 
         </ul>
 
-        <div class="spacer"></div>
-
-
       </div>
+
 
       <div class="row ">
 
@@ -343,11 +344,20 @@
 
         <div class="col s12 pad-0">
           <div class="input-field col s12">
+            <textarea id="idexterno" class="materialize-textarea" data-length="240"></textarea>
+            <label for="idexterno">ID Externo</label>
+          </div>
+
+        </div>
+
+        <div class="col s12 pad-0">
+          <div class="input-field col s12">
             <textarea id="descripcion" class="materialize-textarea" data-length="240"></textarea>
             <label for="descripcion">Observación...</label>
           </div>
 
         </div>
+
 
       </div>
 
@@ -387,118 +397,25 @@
   </style>
 
   <script>
-
     document.addEventListener("deviceready", coleccionProductos, false);
     function coleccionProductos() {
-      /*
-      var url_string = window.location.href; //window.location.href
-      var url = new URL(url_string);
-      var id = url.searchParams.get("id");
-      */
-
       $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getDepositos", function (data) {
-
         let cant = 0;
         $(data.data).each(function (i, val) {
-
           let coleccion = "";
           let foto = 'pic.jpg';
           if (val['id']) {
-            coleccion = coleccion + "<a href='#' onclick='seleccionardeposito(" + val['id'] + ")' id='li-" + val['id'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id'] + "'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['nombre'] + "</span><p>" + val['ciudad'] + "</p></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id'] + "'></i></div></li></a>";
+            coleccion = coleccion + "<a href='#' onclick='seleccionarItem(" + val['id'] + ")' id='link-" + val['id'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id'] + "'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['nombre'] + "</span><p>" + val['ciudad'] + " - " + val['agente'] + "</p></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id'] + "'></i></div></li></a>";
             cant++;
-
           }
-          //console.log(coleccion);
-
-          // $('#coleccionProductos').append(coleccion);
           $(coleccion).appendTo("#coleccionProductos");
-
           $('#cant').html('(' + cant + ')')
-
-          if (localStorage.getItem('idDeposito') !== '') {
-            $("a[id^='li-']").hide();
-            let idDeposito = localStorage.getItem('idDeposito')
-            let li = "#li-" + idDeposito;
-            $(li).show();
-            $('#check-' + idDeposito).removeClass("mdi-pin-outline colorgris"); //remover pin inactivo
-            $('#check-' + idDeposito).addClass("mdi-pin colorgris"); //agregar pin activo  
-          } else {
-            $("a[id^='li-']").show();
-          }
-
+          cargarLista()
         });
-
-
       });
-
-
-    }
-
-    function seleccionardeposito(idDeposito) {
-      if (localStorage.getItem('idDeposito') == '') {
-        console.log('iddeposito esta vacio y se asigno localstorage')
-
-        $("a[id^='li-']").hide();
-        $("#li-" + idDeposito).show();
-        $('#check-' + idDeposito).removeClass("mdi-pin-outline colorgrisclaro"); //remover pin inactivo
-        $('#check-' + idDeposito).addClass("mdi-pin colorgris"); //agregar pin activo 
-
-        $('#li-' + idDeposito).removeClass("colorgrisclaro");
-        $('#li-' + idDeposito).addClass("colorgris");
-
-
-
-
-
-        localStorage.setItem('idDeposito', idDeposito);
-
-      } else
-        if (idDeposito == localStorage.getItem('idDeposito')) {
-          console.log('localstorage es igual a parametro se vacio localstorage')
-          localStorage.setItem('idDeposito', "");
-          $("a[id^='li-']").show();
-          $('#check-' + idDeposito).removeClass("mdi-pin colorgris");
-          $('#check-' + idDeposito).addClass("mdi-pin-outline colorgris");
-
-
-
-        } else {
-          console.log('se cargo la pagina con valor en localstorage y se cargo otro parametro')
-          $("a[id^='li-']").hide();
-          $("#li-" + idDeposito).show();
-          $('#check-' + idDeposito).removeClass("mdi-pin-outline"); //remover pin inactivo
-          $('#check-' + idDeposito).addClass("mdi-pin"); //agregar pin activo  
-          localStorage.setItem('idDeposito', idDeposito);
-
-        }
-
-
-
-    }
-
-    function pin() {
-      if (localStorage.getItem('pin') == '' && $('#buscador').val() !== '') {
-        localStorage.setItem('pin', $('#buscador').val()); //guardar el input en la base de datos
-        $("#buscador").prop("disabled", true); //bloquear input
-        $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
-        $("#pin").addClass("mdi-pin"); //agregar pin activo
-
-      } else {
-        localStorage.setItem('pin', '');
-        $("#buscador").prop("disabled", false)
-        $("#buscador").val('')
-        $('#labelbuscador').show()
-        $("#pin").removeClass("mdi-pin")
-        $('#pin').addClass("mdi-pin-outline")
-
-        let filtro = ''
-        lista(filtro)
-
-
-
-      }
     }
   </script>
+
 
   <!-- PWA Service Worker Code -->
 
@@ -547,13 +464,16 @@
         formData.append("idDeposito", idDeposito);
 
         formData.append("descripcion", $('#descripcion').val());
-        
+        formData.append("idexterno", $('#idexterno').val());
+
+
         formData.append("estado", $('#estado').val());
 
         formData.append("lat", localStorage.getItem('lat'));
         formData.append("lon", localStorage.getItem('lon'));
         formData.append("precision", localStorage.getItem('precision'));
         formData.append("ubicacion_hora", localStorage.getItem('ubicacion_hora'));
+        formData.append("idusu", localStorage.getItem('idusu'));
 
         for (var value of formData.values()) {
           console.log(value);
@@ -603,8 +523,10 @@
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
   <script type="text/javascript">
     $("input#nombre, textarea#descripcion").characterCounter();
+
   </script>
   <script src="./js/localizacion.js"></script>
+
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
 
   <script src="cordova.js"></script>
@@ -622,7 +544,10 @@
     document.addEventListener("DOMContentLoaded", function () {
       $('.preloader-background').delay(10).fadeOut('slow');
     });
+    let nombrelista = 'altaprod4'
   </script>
+  <script src="./js/lista.js"></script>
+
 </body>
 
 </html>

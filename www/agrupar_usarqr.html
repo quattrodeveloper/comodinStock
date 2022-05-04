@@ -42,7 +42,7 @@
 
     <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
-    media="screen,projection" />
+        media="screen,projection" />
 
     <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
         media="screen,projection" />
@@ -134,10 +134,8 @@
             <div class="row ">
                 <div class="col s12 pad-0">
                     <h5 class="bot-20 sec-tit  ">Series de Cód. QR <span id="cant"></span></h5>
-                    <p>Cód. disponibles (D) <br>
-                        Cód. usados (U) <br>
-                        Total (T)
-                    </p>
+                    <p>Cód. disponibles (D) Cód. usados (U) Total (T)</p>
+
                     <ul class="collection invoice-item" id="coleccionComponentes">
 
 
@@ -180,9 +178,10 @@
                     let coleccion = "";
                     if (val['descripcion']) {
                         cant++;
-                        coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie'] + ")</span><p>D: " + val['inactivos'] + " U: " + val['activos'] + " T: " + val['total'] + "</p></div><div class='secondary-content'><a href='#' onclick='activarQR("+val['idserie']+")'><i class='mdi mdi-chevron-right'></i></a></div></li>";
+                        coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie'] + ")</span><p>D: " + val['inactivos'] + " U: " + val['activos'] + " T: " + val['total'] + "</p></div><div class='secondary-content'><a href='#' onclick='activarQR(" + val['idserie'] + ")'><i class='mdi mdi-chevron-right'></i></a></div></li>";
                     }
                     $('#cant').html('(' + cant + ')');
+                    cargarLista()
                     $(coleccion).appendTo("#coleccionComponentes");
                 });
             });
@@ -237,9 +236,11 @@
 
 
         function activarQR(idserie) {
-
+            var url_string = window.location.href; //window.location.href
+            var url = new URL(url_string);
+            var idproducto = url.searchParams.get("idproducto");
             $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getQR?idserie=" + idserie, function (data) {
-                window.location = './agrupar_1.html?idqr='+data.data
+                window.location = './agrupar_1.html?idqr=' + data.data + '&idproducto='+idproducto
             });
         }
 
@@ -281,7 +282,9 @@
         document.addEventListener("DOMContentLoaded", function () {
             $('.preloader-background').delay(10).fadeOut('slow');
         });
-    </script>
+        let nombrelista = 'agruparusarqr'
+  </script>
+  <script src="./js/lista.js"></script>
 
 </body>
 

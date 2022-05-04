@@ -38,9 +38,10 @@ $("#submit").click(function(event) {
 		$("#msg_alert").addClass("new badge blue lighten-2");
 		$("#msg_title").html("Aguarde!");
 		$("#msg_text").html("Autenticando...");
+		const ver = '1.4.29'
 		$.ajax({
 			type        : 'GET',
-			url         : config.urlServer+'login/'+formData['username']+'&'+formData['password'],
+			url         : config.urlServer+'login/'+formData['username']+'&'+formData['password']+'&'+ver,
 			dataType    : 'json',
 			// encode      : true
 			success:function(data) {
@@ -72,7 +73,9 @@ $("#submit").click(function(event) {
                 localStorage.user = data.data.user;
                 localStorage.rol = data.data.rol;
 				localStorage.idusu = data.data.id_usu;
-
+				localStorage.permisos = JSON.stringify(data.data.permisos);
+				let today = new Date().toISOString().slice(0, 10)
+				localStorage.hoy = today
                 $("#msg_alert").addClass("new badge teal lighten-2");
                 $("#msg_title").html( "Correcto!" );
                 $("#msg_text").html( "Ingresando al Sistema..." );
