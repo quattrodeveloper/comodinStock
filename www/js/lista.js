@@ -26,21 +26,23 @@ function pin() {
 
 function bloquearpin() {
   var altaprod1 = localStorage.getItem(nombrelista)
-  var buscador = $("#buscador").val()
+  var buscadorval = $("#buscador").val()
 
-  localStorage.setItem(nombrelista, buscador); //guardar el input en la base de datos
+  localStorage.setItem(buscador, buscadorval); //guardar el input en la base de datos
+
   $("#buscador").prop("disabled", true); //bloquear input
   $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
   $("#pin").addClass("mdi-pin"); //agregar pin activo
-  lista(buscador)
+  lista(buscadorval)
 }
 function desbloquearpin() {
-  localStorage.setItem(nombrelista, '');
+  localStorage.setItem(buscador, '');
   $("#buscador").prop("disabled", false)
   $("#buscador").val('')
   $('#labelbuscador').show()
   $("#pin").removeClass("mdi-pin")
   $('#pin').addClass("mdi-pin-outline")
+
 
   let filtro = ''
   lista(filtro)
@@ -82,8 +84,8 @@ function cargarLista() {
     $("a[id^='link-']").show();
   }
 
-  if (localStorage.getItem(nombrelista)) {
-    var filtro = localStorage.getItem(nombrelista);
+  if (localStorage.getItem(buscador)) {
+    var filtro = localStorage.getItem(buscador);
     lista(filtro)
     $("#buscador").val(filtro);
     $("#buscador").prop("disabled", true); //bloquear input
