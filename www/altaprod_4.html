@@ -80,7 +80,7 @@
   <!-- START navigation -->
   <nav class="fixedtop topbar navigation" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="index.html" class=" brand-logo ">Stock</a>
+      <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #f5f5f5;"></i></a>
       <!-- <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
       </ul> -->
@@ -331,10 +331,11 @@
           <div class="input-field col s12">
             <select id="estado" name="estado" style="display:inline">
               <option value="" disabled>Estado de la máquina</option>
-              <option value="1" selected>Operativa</option>
-              <option value="2">En transito</option>
+              <option disabled selected>Selecciona una opción</option>
+              <option value="4">Nuevo</option>
+              <option value="1">Reparado</option>
               <option value="3">En reparación</option>
-              <option value="-1">Desactivada</option>
+              <option value="-1">Desactivado</option>
             </select>
           </div>
 
@@ -353,7 +354,7 @@
         <div class="col s12 pad-0">
           <div class="input-field col s12">
             <textarea id="descripcion" class="materialize-textarea" data-length="240"></textarea>
-            <label for="descripcion">Observación...</label>
+            <label for="descripcion">Comentario...</label>
           </div>
 
         </div>
@@ -450,12 +451,12 @@
 
 
     function guardar() {
-      if (localStorage.getItem('idDeposito')) {
+      if (localStorage.getItem('altaprod4')) {
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
         var qr = url.searchParams.get("qr");
         var id = url.searchParams.get("id");
-        var idDeposito = localStorage.getItem('idDeposito');
+        var idDeposito = localStorage.getItem('altaprod4');
 
         var formData = new FormData();
 
@@ -491,7 +492,7 @@
           .done(function (data) {
             console.log(data)
 
-            let confirmar = window.confirm('Operacion exitosa')
+            let confirmar = window.confirm('Producto cargado con éxito.')
             if (confirmar) {
               window.location = './index.html'
             }

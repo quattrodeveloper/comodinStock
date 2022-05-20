@@ -1,11 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.comodin.stock" version="1.5.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.comodin.stock" version="1.5.19" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Stock</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="maildejeremias@gmail.com" href="https://local.quattropy.com/comodin_stock">
     </author>
     <content src="index.html" />
     <icon src="res/icon.png" />

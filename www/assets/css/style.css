@@ -175,7 +175,8 @@ body{
   background: #f5f5f5;
   color: #455A64;
 }
-/* i.mdi.mdi-menu {
+/* INICIO DESACTIVAR MENU */
+i.mdi.mdi-menu {
   display: none;
 }
 i.mdi.mdi-invert-colors.mdi-transition1 {
@@ -183,8 +184,8 @@ i.mdi.mdi-invert-colors.mdi-transition1 {
 }
 i.mdi.mdi-tune {
   display: none;
-} */
-
+}
+/* FIN DESACTIVAR MENU */
 body, body *,p{
   font-family: Roboto;
   font-size: 16px;

@@ -130,14 +130,6 @@
     <div class="container">
         <div class="section">
 
-
-            <div class="card-panel bg-primary invoice-to">
-                <h5 class="white-text top-0" id="titulo"></h5>
-                <div class="white-text" id="descripcion">
-                    E: Fecha de envío; C: Cant. pendiente de recepción; Cmnt: Comentario;
-                </div>
-            </div>
-
             <div class="row ">
                 <div class="col s12 pad-0">
                     <h5 class="bot-20 sec-tit  ">Traslados <span id="cant"></span></h5>
@@ -192,18 +184,20 @@
         }
     </style>
 
-    <a href="#" id="leerQR" class="fab" onclick="addItem()"><i class="mdi mdi-qrcode" style="font-size:80%;"></i>
-    </a>
+    <a href="#" id="leerQR" class="fab" onclick="addItem()">+</a>
     <script>
+
+
+
         document.addEventListener("deviceready", coleccionComponentes, false)
         function coleccionComponentes() {
             let idusu = localStorage.idusu
-            $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getRecepciones?idusu=" + idusu, function (data) {
+            $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getTraslados?idusu=" + idusu, function (data) {
 
                 let cant = 0;
                 $(data.data).each(function (i, val) {
                     console.log(val)
-                    $('#titulo').html(val['nombre_usu'] + ' ' + val['apellido_usu'])
+                    //$('#titulo').html(val['nombre_usu'] + ' ' + val['apellido_usu'])
                     let coleccion = "";
                     let fechafin = "";
 
@@ -215,7 +209,7 @@
                     fechafin = fechafin.substring(fechafin.length - 10, fechafin.length)
 
                     cant++;
-                    coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['dep_ciudad'] + ' - ' + val['dep_nombre'] + "</span><p>E: " + fechaini + " C: " + val['citems'] + " - Cmnt: " + val['mov_obs'] + "</p></div><div class='secondary-content'></div></li>";
+                    coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['dep_ciudad'] + ' - ' + val['dep_nombre'] + "</span><p>"+'E: ' + fechaini +" C: " + val['citems'] +  ' Obs: ' + val['mov_obs'] + "</p></div><div class='secondary-content'><a href='#' onclick='ver(" + val['mov_id'] + ")' name='item-" + val['movi_id'] + "'><i class='mdi mdi-chevron-right'></i></a></div></li>";
 
                     $('#cant').html('(' + cant + ')')
                     $(coleccion).appendTo("#coleccionComponentes")
@@ -251,7 +245,12 @@
         }
 
         function addItem() {
-            window.location = './mov_recepcion_2.html';
+
+            window.location = './mov_stock.html';
+        }
+
+        function ver(id) {
+            window.location.href = "./mov_stock_2.html?id="+id
         }
 
 
