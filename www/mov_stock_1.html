@@ -78,7 +78,7 @@
     <!-- START navigation -->
     <nav class="fixedtop topbar navigation" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #f5f5f5;"></i></a>
+            <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #9575cd"></i></a>
             <!-- <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
       </ul> -->
@@ -192,7 +192,7 @@
         document.addEventListener("deviceready", coleccionComponentes, false)
         function coleccionComponentes() {
             let idusu = localStorage.idusu
-            $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getTraslados?idusu=" + idusu, function (data) {
+            $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getTraslados?idusu=" + idusu, function (data) {
 
                 let cant = 0;
                 $(data.data).each(function (i, val) {
@@ -209,7 +209,7 @@
                     fechafin = fechafin.substring(fechafin.length - 10, fechafin.length)
 
                     cant++;
-                    coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/s1/public/img/stock/lg/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['dep_ciudad'] + ' - ' + val['dep_nombre'] + "</span><p>"+'E: ' + fechaini +" C: " + val['citems'] +  ' Obs: ' + val['mov_obs'] + "</p></div><div class='secondary-content'><a href='#' onclick='ver(" + val['mov_id'] + ")' name='item-" + val['movi_id'] + "'><i class='mdi mdi-chevron-right'></i></a></div></li>";
+                    coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['dep_ciudad'] + ' - ' + val['dep_nombre'] + "</span><p>"+'E: ' + fechaini +" C: " + val['citems'] +  ' Obs: ' + val['mov_obs'] + "</p></div><div class='secondary-content'><a href='#' onclick='ver(" + val['mov_id'] + ")' name='item-" + val['movi_id'] + "'><i class='mdi mdi-chevron-right'></i></a></div></li>";
 
                     $('#cant').html('(' + cant + ')')
                     $(coleccion).appendTo("#coleccionComponentes")
@@ -224,7 +224,7 @@
             var url = new URL(url_string)
             let id = url.searchParams.get("id")
             $.ajax({
-                url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/movdelItem?id=' + idItem,
+                url: 'https://stock.quattropy.com/s1/public/api/stock/movdelItem?id=' + idItem,
                 data: '',
                 cache: false,
                 contentType: false,
@@ -303,7 +303,7 @@
     //   formData.append("descripcion", $('#descripcion').val())
 
     //   $.ajax({
-    //     url: 'https://local.quattropy.com/comodin_stock/app/agrupar_1.php',
+    //     url: 'https://stock.quattropy.com/app/agrupar_1.php',
     //     data: formData,
     //     cache: false,
     //     contentType: false,

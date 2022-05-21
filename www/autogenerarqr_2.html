@@ -204,8 +204,8 @@ function crearSerie() {
   formData.append("cantidad", $('#cantidad').val());
 
   $.ajax({
-    //url: 'https://local.quattropy.com/comodin_stock/app/agrupar_1.php',
-    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/crearSerie',
+    //url: 'https://stock.quattropy.com/app/agrupar_1.php',
+    url: 'https://stock.quattropy.com/s1/public/api/stock/crearSerie',
     data: formData,
     cache: false,
     contentType: false,

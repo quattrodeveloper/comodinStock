@@ -53,7 +53,7 @@ document.addEventListener('ondeviceready', leerQR, false);
   formData.append("qr", codigo);
 
   $.ajax({
-    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/desagrupar?qr='+codigo,
+    url: 'https://stock.quattropy.com/s1/public/api/stock/desagrupar?qr='+codigo,
     data: formData,
     cache: false,
     contentType: false,

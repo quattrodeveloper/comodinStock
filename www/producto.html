@@ -366,7 +366,7 @@ function guardar() {
   formData.append("descripcion", $('#descripcion').val());
 
   $.ajax({
-    url: 'https://local.quattropy.com/comodin_stock/app/cargardb.php',
+    url: 'https://stock.quattropy.com/app/cargardb.php',
     data: formData,
     cache: false,
     contentType: false,

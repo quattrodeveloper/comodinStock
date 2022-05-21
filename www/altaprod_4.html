@@ -80,7 +80,7 @@
   <!-- START navigation -->
   <nav class="fixedtop topbar navigation" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #f5f5f5;"></i></a>
+      <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #9575cd"></i></a>
       <!-- <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
       </ul> -->
@@ -400,13 +400,13 @@
   <script>
     document.addEventListener("deviceready", coleccionProductos, false);
     function coleccionProductos() {
-      $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getDepositos", function (data) {
+      $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getDepositos", function (data) {
         let cant = 0;
         $(data.data).each(function (i, val) {
           let coleccion = "";
           let foto = 'pic.jpg';
           if (val['id']) {
-            coleccion = coleccion + "<a href='#' onclick='seleccionarItem(" + val['id'] + ")' id='link-" + val['id'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id'] + "'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['nombre'] + "</span><p>" + val['ciudad'] + " - " + val['agente'] + "</p></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id'] + "'></i></div></li></a>";
+            coleccion = coleccion + "<a href='#' onclick='seleccionarItem(" + val['id'] + ")' id='link-" + val['id'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id'] + "'><div class='item-det'><img src='https://stock.quattropy.com/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['nombre'] + "</span><p>" + val['ciudad'] + " - " + val['agente'] + "</p></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id'] + "'></i></div></li></a>";
             cant++;
           }
           $(coleccion).appendTo("#coleccionProductos");
@@ -481,8 +481,8 @@
         }
 
         $.ajax({
-          // url: 'https://local.quattropy.com/comodin_stock/app/cargardb.php',
-          url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/cargarProd',
+          // url: 'https://stock.quattropy.com/app/cargardb.php',
+          url: 'https://stock.quattropy.com/s1/public/api/stock/cargarProd',
           data: formData,
           cache: false,
           contentType: false,

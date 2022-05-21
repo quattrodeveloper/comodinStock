@@ -1,8 +1,8 @@
 const config = {
     version : '2.0.0',
     ip: "",
-    server: "https://local.quattropy.com/comodin_stock",
-    urlServer: "https://local.quattropy.com/comodin_stock/s1/public/api/stock/",
+    server: "https://stock.quattropy.com",
+    urlServer: "https://stock.quattropy.com/s1/public/api/stock/",
     company: "Quattro S.A.",
     versionScript: "2345"
 }

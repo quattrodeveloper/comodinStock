@@ -200,7 +200,7 @@ function guardar() {
   formData.append("qr", $('#qr').val());
   
   $.ajax({
-    url: 'https://local.quattropy.com/comodin_stock/s1/public/api/stock/desagrupar?qr='+qr,
+    url: 'https://stock.quattropy.com/s1/public/api/stock/desagrupar?qr='+qr,
     data: formData,
     cache: false,
     contentType: false,

@@ -79,7 +79,7 @@
     <!-- START navigation -->
     <nav class="fixedtop topbar navigation" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #f5f5f5;"></i></a>
+            <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #9575cd"></i></a>
             <!-- <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
       </ul> -->
@@ -171,14 +171,14 @@
             var id = url.searchParams.get("id");
 
 
-            $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getSeries", function (data) {
+            $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getSeries", function (data) {
 
                 let cant = 0;
                 $(data.data).each(function (i, val) {
                     let coleccion = "";
                     if (val['descripcion']) {
                         cant++;
-                        coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://local.quattropy.com/comodin_stock/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie'] + ")</span><p>D: " + val['inactivos'] + " U: " + val['activos'] + " T: " + val['total'] + "</p></div><div class='secondary-content'><a href='#' onclick='activarQR(" + val['idserie'] + ")'><i class='mdi mdi-chevron-right'></i></a></div></li>";
+                        coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://stock.quattropy.com/admin/client/comodin/multimedia/productos/pic.jpg' alt='' class='circle'><span class='title'>" + val['descripcion'] + " (#" + val['idserie'] + ")</span><p>D: " + val['inactivos'] + " U: " + val['activos'] + " T: " + val['total'] + "</p></div><div class='secondary-content'><a href='#' onclick='activarQR(" + val['idserie'] + ")'><i class='mdi mdi-chevron-right'></i></a></div></li>";
                     }
                     $('#cant').html('(' + cant + ')');
                     cargarLista()
@@ -239,7 +239,7 @@
             var url_string = window.location.href; //window.location.href
             var url = new URL(url_string);
             var idproducto = url.searchParams.get("idproducto");
-            $.getJSON("https://local.quattropy.com/comodin_stock/s1/public/api/stock/getQR?idserie=" + idserie, function (data) {
+            $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getQR?idserie=" + idserie, function (data) {
                 window.location = './agrupar_1.html?idqr=' + data.data + '&idproducto='+idproducto
             });
         }
