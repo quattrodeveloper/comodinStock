@@ -123,15 +123,34 @@
         
         <div class="divider"></div>
         <div class="input-field col s12">
-          <input id="descripcion" type="text" data-length="60">
-          <label for="descripcion">Descripción</label>
+          <input id="descripcion" type="text" data-length="24">
+          <label for="descripcion">Nombre</label>
         </div>
       
       
         <div class="input-field col s12">
-          <input id="cantidad" type="number" data-length="60">
+          <input id="cantidad" type="number" data-length="3">
           <label for="cantidad">Cantidad</label>
         </div>
+
+
+      
+        <div class="row ">
+
+          <div class="col s12 pad-0">
+            <div class="input-field col s12">
+
+              <select id="talle" name="talle" style="display:inline">
+                <option value="">Tamaño QR</option>
+                <option value="g">Grande</option>
+                <option value="p">Chico</option>
+              </select>
+            </div>
+  
+          </div>
+        </div>
+
+
 
         <div class="col s12">
           <a class="waves-effect waves-light btn-large bg-primary " onclick="crearSerie()">Crear</a>
@@ -202,6 +221,8 @@ function crearSerie() {
   var formData = new FormData();
   formData.append("descripcion", $('#descripcion').val());
   formData.append("cantidad", $('#cantidad').val());
+  formData.append("talle", $('#talle').val());
+
 
   $.ajax({
     //url: 'https://stock.quattropy.com/app/agrupar_1.php',

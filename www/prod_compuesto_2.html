@@ -2,17 +2,10 @@
 <html class=" ">
 
 <head>
-  <!-- 
-         * @Package: Comodin Stock
-         * @Author: themepassion
-         * @Version: 1.0
-        -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Comodin Stock</title>
   <meta content="Comodin Stock" name="description" />
-
-
   <!-- App Icons -->
   <link rel="apple-touch-icon" sizes="57x57" href="assets/images/icons/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="assets/images/icons/apple-icon-60x60.png">
@@ -31,40 +24,22 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="assets/images/icons/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-
-
-
-
-
-
   <!-- CORE CSS FRAMEWORK - START -->
   <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
   <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
   <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
-
-
   <!-- CORE CSS FRAMEWORK - END -->
-
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
-
   <!-- CORE CSS TEMPLATE - START -->
-
-
   <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" id="main-style" />
   <!-- CORE CSS TEMPLATE - END -->
-
-
-
 </head>
 <!-- END HEAD -->
-
 <!-- BEGIN BODY -->
-
 
 <body class="  html" data-header="light" data-footer="dark" data-header_align="center" data-menu_type="left"
   data-menu="light" data-menu_icons="on" data-footer_type="left" data-site_mode="light" data-footer_menu="show"
@@ -74,32 +49,24 @@
       <div id="preloader"></div>
     </div>
   </div>
-
-
-
   <!-- START navigation -->
   <nav class="fixedtop topbar navigation" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #9575cd"></i></a>
+      <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline"
+          style="color: #9575cd"></i></a>
       <!-- <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
       </ul> -->
-
       <!-- <ul id="nav-mobile" class="sidenav">
         <li><a href="#">Navbar Link</a></li>
       </ul> -->
       <a href="#" data-target="" class="waves-effect waves-circle navicon back-button htmlmode show-on-large "><i
           class="mdi mdi-chevron-left" data-page=""></i></a>
-
       <a href="#" data-target="slide-nav" class="waves-effect waves-circle navicon sidenav-trigger show-on-large"><i
           class="mdi mdi-menu"></i></a>
-
-
-
       <!-- <a href="#" data-target="slide-settings"
         class="waves-effect waves-circle navicon right sidenav-trigger show-on-large pulse"><i
           class="mdi mdi-tune"></i></a>
-
       <a href="#" data-target="" class="waves-effect waves-circle navicon right nav-site-mode show-on-large"><i
           class="mdi mdi-invert-colors mdi-transition1"></i></a> -->
       <!-- <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
@@ -121,14 +88,10 @@
         </div>
       </div>
     </li>
-
-
     <li class="menulinks">
       <ul class="collapsible">
         <!-- SIDEBAR - START -->
-
         <!-- MAIN MENU - START -->
-
         <li class="sh-wrap">
           <div class="subheader">Navigation</div>
         </li>
@@ -247,70 +210,32 @@
                 class="mdi mdi-settings-outline"></i><span class="title">Settings</span> </a>
           </div>
         </li>
-
         <!-- MAIN MENU - END -->
-
-
-
         <!--  SIDEBAR - END -->
-
     </li>
   </ul>
   </li>
   <li class="copy-spacer"></li>
   <li class="copy-wrap">
     <div class="copyright">Stock Comodín &copy; Copyright 2022 </div>
-
-
-
     </ul>
     <!-- END navigation -->
-
-
   </li>
   </ul>
-
   <div class="container">
     <div class="section">
-      <p>Seleccione el depósito destinatario</p>
-      <h5 class="pagetitle">Movimiento de stock</h5>
+      <h5 class="pagetitle" id="titulo"></h5>
       <div class="divider"></div>
-
-
-
-
-    </div>
-
-  </div>
-  </div>
-
-
-
-
-
-
-
-  <div class="container">
-    <div class="section">
-
-
-
-
-
-
-
-
-
-
     </div>
   </div>
-
+  </div>
   <div class="container">
-
     <div class="section">
-
+    </div>
+  </div>
+  <div class="container">
+    <div class="section">
       <div class="row ">
-
         <div class="input-field col s12">
           <i class="mdi mdi-magnify prefix"></i>
           <textarea id="buscador" class="materialize-textarea" style="height: 42px; width:85%;"></textarea>
@@ -318,53 +243,34 @@
           <a href="#" onclick="pin()"><i class="mdi mdi-pin-outline prefix" id="pin"></i></a>
         </div>
 
-        <ul class="collection invoice-item" id="coleccionProductos">
-
-        </ul>
-
       </div>
 
 
+
       <div class="row ">
-
-
-
         <div class="col s12 pad-0">
-          <div class="input-field col s12">
-            <textarea id="descripcion" class="materialize-textarea" data-length="240"></textarea>
-            <label for="descripcion">Comentario...</label>
-          </div>
+          <p>Subconjuntos</p>
 
+          <ul class="collection invoice-item" id="coleccioProductos">
+          </ul>
         </div>
-
-
       </div>
 
       <div class="row ">
         <div class="col s12 pad-0">
-
-          <div class="center">
-            <a class="btn-large waves-effect primary white-text" href="#" id='guardar' onclick="guardar()">Siguiente</a>
-          </div>
-
+          <p>Componentes</p>
+          <ul class="collection invoice-item" id="coleccionComponentes">
+          </ul>
         </div>
       </div>
 
     </div>
-
   </div>
-
-
-
-
-
-
   <div class="backtotop">
     <a class="btn-floating btn primary-bg">
       <i class="mdi mdi-chevron-up"></i>
     </a>
   </div>
-
   <style>
     .colorgris {
       color: #455A64;
@@ -374,35 +280,62 @@
       color: #9e9e9e;
     }
   </style>
-
   <script>
-    document.addEventListener("deviceready", coleccionProductos, false);
+    document.addEventListener("deviceready", coleccionProductos, false)
     function coleccionProductos() {
-      $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getDepositos", function (data) {
-        let cant = 0;
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var idconjunto = url.searchParams.get("idconjunto");
+      var idpadrecat = url.searchParams.get("idpadrecat");
+
+      $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getsubcategorias?idconjunto=" + idconjunto + "&idpadrecat=" + idpadrecat, function (data) {
+        let cant = 0
         $(data.data).each(function (i, val) {
-          let coleccion = "";
-          let foto = 'pic.jpg';
-          if (val['id']) {
-            coleccion = coleccion + "<a href='#' onclick='seleccionarItem(" + val['id'] + ")' id='link-" + val['id'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id'] + "'><div class='item-det'><img src='https://stock.quattropy.com/admin/client/comodin/multimedia/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['nombre'] + "</span><p>" + val['ciudad'] + " - " + val['agente'] + "</p></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id'] + "'></i></div></li></a>";
-            cant++;
+          console.log(val)
+          let coleccion = ""
+          let foto = 'pic.jpg'
+          if (val['id_cat']) {
+            coleccion = coleccion + "<li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id_cat'] + "'></i></div></li>"
+            cant++
           }
-          $(coleccion).appendTo("#coleccionProductos");
-          $('#cant').html('(' + cant + ')')
+          $(coleccion).appendTo("#coleccionProductos")
           cargarLista()
         });
       });
     }
+
+    document.addEventListener("deviceready", coleccionComponentes, false)
+    function coleccionComponentes() {
+      var url_string = window.location.href
+      var url = new URL(url_string)
+      var idcat = url.searchParams.get("idcat")
+
+      $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getcatcomponentes?idcat=" + idcat, function (data) {
+        let cant = 0
+        $(data.data).each(function (i, val) {
+          console.log(val)
+          $('#titulo').html(val['catnombre']);
+
+          let coleccion = ""
+          let foto = 'pic.jpg'
+          if (val['id_cat']) {
+            coleccion = coleccion + "<a href='#' onclick='seleccionarItem(" + val['id_cat'] + ")' id='link-" + val['id_cat'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id_cat'] + "'></i></div></li></a>"
+            cant++
+          }
+          $(coleccion).appendTo("#coleccionComponentes")
+          cargarLista()
+        });
+      });
+    }
+
+  
+
+
   </script>
-
-
   <!-- PWA Service Worker Code -->
-
   <script type="text/javascript">
     // This is the "Offline copy of pages" service worker
-
     // Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-
     // Check compatibility for the browser we're running this in
     if ("serviceWorker" in navigator) {
       if (navigator.serviceWorker.controller) {
@@ -418,33 +351,21 @@
           });
       }
     }
-
     document.addEventListener('deviceready', onDeviceReady, false);
-
     function onDeviceReady() {
-
       console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     }
-
-
-
     function guardar() {
       $('#guardar').attr('disable', true)
-
       if (localStorage.getItem('movstock1')) {
-      
         var movstock1 = localStorage.getItem('movstock1');
-
         var formData = new FormData();
-
         formData.append("idDeposito", movstock1);
         formData.append("descripcion", $('#descripcion').val());
         formData.append("idusu", localStorage.getItem('idusu'));
-
         for (var value of formData.values()) {
           console.log(value);
         }
-
         $.ajax({
           url: 'https://stock.quattropy.com/s1/public/api/stock/movstock',
           data: formData,
@@ -455,10 +376,7 @@
         })
           .done(function (data) {
             console.log(data.data)
-
             window.location = './mov_stock_2.html?id=' + data.data
-
-
           })
           .fail(function (data) {
             console.log(data)
@@ -468,41 +386,25 @@
         alert("Seleccione un depósito.")
       }
     }
-
-
-
   </script>
-
-
   <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
-
   <!-- CORE JS FRAMEWORK - START -->
   <script src="assets/js/jquery-2.2.4.min.js"></script>
   <script src="assets/js/materialize.js"></script>
   <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
   <!-- CORE JS FRAMEWORK - END -->
-
-
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
   <script type="text/javascript">
     $("input#nombre, textarea#descripcion").characterCounter();
-
   </script>
   <script src="./js/localizacion.js"></script>
-
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
-
   <script src="cordova.js"></script>
-
   <!-- CORE TEMPLATE JS - START -->
   <script src="assets/js/init.js"></script>
   <script src="assets/js/settings.js"></script>
-
   <script src="assets/js/scripts.js"></script>
-
   <!-- END CORE TEMPLATE JS - END -->
-
-
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
       $('.preloader-background').delay(10).fadeOut('slow');
@@ -510,7 +412,6 @@
     let nombrelista = 'movstock1'
   </script>
   <script src="./js/lista.js"></script>
-
 </body>
 
 </html>

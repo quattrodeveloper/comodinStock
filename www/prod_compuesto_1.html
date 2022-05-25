@@ -12,8 +12,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Comodin Stock</title>
   <meta content="Comodin Stock" name="description" />
-
-
   <!-- App Icons -->
   <link rel="apple-touch-icon" sizes="57x57" href="assets/images/icons/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="assets/images/icons/apple-icon-60x60.png">
@@ -32,40 +30,22 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="assets/images/icons/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-
-
-
-
-
-
   <!-- CORE CSS FRAMEWORK - START -->
   <link href="assets/css/preloader.css" type="text/css" rel="stylesheet" media="screen,projection" />
-
   <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="assets/fonts/mdi/css/materialdesignicons.min.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
   <link href="assets/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
     media="screen,projection" />
-
-
   <!-- CORE CSS FRAMEWORK - END -->
-
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
-
   <!-- CORE CSS TEMPLATE - START -->
-
-
   <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" id="main-style" />
   <!-- CORE CSS TEMPLATE - END -->
-
-
-
 </head>
 <!-- END HEAD -->
-
 <!-- BEGIN BODY -->
-
 
 <body class="  html" data-header="light" data-footer="dark" data-header_align="center" data-menu_type="left"
   data-menu="light" data-menu_icons="on" data-footer_type="left" data-site_mode="light" data-footer_menu="show"
@@ -75,32 +55,24 @@
       <div id="preloader"></div>
     </div>
   </div>
-
-
-
   <!-- START navigation -->
   <nav class="fixedtop topbar navigation" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline" style="color: #9575cd"></i></a>
+      <a id="logo-container" href="./index.html" class=" brand-logo "><i class="mdi mdi-home-outline"
+          style="color: #9575cd"></i></a>
       <!-- <ul class="right hide-on-med-and-down">
         <li><a href="#">Navbar Link</a></li>
       </ul> -->
-
       <!-- <ul id="nav-mobile" class="sidenav">
         <li><a href="#">Navbar Link</a></li>
       </ul> -->
       <a href="#" data-target="" class="waves-effect waves-circle navicon back-button htmlmode show-on-large "><i
           class="mdi mdi-chevron-left" data-page=""></i></a>
-
       <a href="#" data-target="slide-nav" class="waves-effect waves-circle navicon sidenav-trigger show-on-large"><i
           class="mdi mdi-menu"></i></a>
-
-
-
       <a href="#" data-target="slide-settings"
         class="waves-effect waves-circle navicon right sidenav-trigger show-on-large pulse"><i
           class="mdi mdi-tune"></i></a>
-
       <a href="#" data-target="" class="waves-effect waves-circle navicon right nav-site-mode show-on-large"><i
           class="mdi mdi-invert-colors mdi-transition1"></i></a>
       <!-- <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
@@ -122,229 +94,81 @@
         </div>
       </div>
     </li>
-
-
-
   </ul>
   </li>
-
   </ul>
-
   <div class="container">
-
     <div class="section">
       <h5 class="pagetitle">Producto compuesto <span id="cant"></span></h5>
       <div class="divider"></div>
     </div>
-
-
     <div class="section">
-
-
-
       <div class="row ">
-
         <div class="input-field col s12">
           <i class="mdi mdi-magnify prefix"></i>
           <textarea id="buscador" class="materialize-textarea" style="height: 42px; width:85%;"></textarea>
           <label for="buscador" class="" id="labelbuscador">Buscar...</label>
           <a href="#" onclick="pin()"><i class="mdi mdi-pin-outline prefix" id="pin"></i></a>
         </div>
-
         <ul class="collection invoice-item" id="coleccionProductos">
-
         </ul>
-
         <div class="spacer"></div>
-
-
       </div>
-
     </div>
-
-
   </div>
-
   </div>
-
-
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
   <div class="backtotop">
     <a class="btn-floating btn primary-bg">
       <i class="mdi mdi-chevron-up"></i>
     </a>
   </div>
-
-
   <script>
-
     function agrupar_3() {
       var url_string = window.location.href; //window.location.href
       var url = new URL(url_string);
       var id = url.searchParams.get("id");
       window.location = './agrupar_3_manual.html?id=' + id;
     }
-
     document.addEventListener("deviceready", coleccionProductos, false);
     function coleccionProductos() {
-
       $.getJSON(config.urlServer + "getConjuntos", function (data) {
-
         let cant = 0;
         if (data.status != "success") {
           alert('no se puedo conectar')
         }
         $(data.data).each(function (i, val) {
-
           let coleccion = "";
           let foto = 'pic.jpg';
           if (val['prod_nombre']) {
             if (val['prod_foto']) {
               foto = val['prod_foto'];
             }
-
-
-            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span><p>" + val['prod_descrip'] + "</p></div><div class='secondary-content'><a href='#' onclick='siguiente(" + val['id'] + ")'><i class='mdi mdi-chevron-right'></i></a></div></li>";
+            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + foto + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span><p>" + val['prod_descrip'] + "</p></div><div class='secondary-content'><a href='#' onclick='getID(" + val['idproducto'] + ")'><i class='mdi mdi-chevron-right'></i></a></div></li>";
             cant++;
           }
-
           $(coleccion).appendTo("#coleccionProductos");
           $('#cant').html('(' + cant + ')')
           cargarLista()
-
-
-
-
-
-
         });
-
-
       });
+    }
 
+    function getID(idproducto) {
+      $.getJSON("https://stock.quattropy.com/s1/public/api/stock/crearConjunto?idproducto=" + idproducto, function (data) {
+        let href = window.location = "./prod_compuesto_2.html?idproducto=" + idproducto + "&idconjunto=" + data.data.idConjunto + "&idcategoria=" + data.data.idCategoria + "&idpadrecat=0";
+      });
 
     }
 
-    // function lista(filtro) {
-    //   let cant = 0;
-    //   $("ul li").each(function () {
-    //     if ($(this).text().search(new RegExp(filtro, "i")) < 0) {
-    //       $(this).hide();
-    //     } else {
-    //       $(this).show()
-    //       cant++;
-    //     }
-    //   });
-    //   if (filtro == '') { cant = cant - 2; }
-    //   $('#cant').html('(' + cant + ')')
-    // }
-
-    // function siguiente(idProducto) {
-    //   window.location = './prod_compuesto_2.html?idProducto=' + idProducto + '&idcat=' + 0;
-    // }
-
-
-
-    // document.addEventListener("deviceready", iniciarpin, false)
-
-    // function iniciarpin() {
-    //   var prodcompuesto1 = localStorage.getItem('prodcompuesto1')
-    //   if(prodcompuesto1 !== '') {
-    //     $('#labelbuscador').hide()
-    //     $("#buscador").val(prodcompuesto1)
-    //     bloquearpin()
-    //   }
-    //   lista($("#buscador").val())
-    // }
-
-    // function pin() {
-    //   if (!$("#buscador").prop("disabled")) {
-    //     bloquearpin()
-    //   } else
-    //     if ($("#buscador").prop("disabled")) {
-    //       desbloquearpin()
-    //     }
-
-
-    // }
-
-    // function pin() {
-    //   var prodcompuesto1 = localStorage.getItem('prodcompuesto1')
-    //   if (!prodcompuesto1) {
-    //     var buscador = ''
-    //     localStorage.setItem('prodcompuesto1', buscador)
-    //   } else {
-    //     bloquearpin()
-    //   }
-
-    //   if ($("#buscador").val()) {
-    //     bloquearpin()
-    //   }
-
-    // }
-
-    // function bloquearpin() {
-    //   var prodcompuesto1 = localStorage.getItem('prodcompuesto1')
-    //   var buscador = $("#buscador").val()
-
-    //   localStorage.setItem('prodcompuesto1', buscador); //guardar el input en la base de datos
-    //   $("#buscador").prop("disabled", true); //bloquear input
-    //   $('#pin').removeClass("mdi-pin-outline"); //remover pin inactivo
-    //   $("#pin").addClass("mdi-pin"); //agregar pin activo
-    //   lista(buscador)
-    // }
-    // function desbloquearpin() {
-    //   localStorage.setItem('prodcompuesto1', '');
-    //   $("#buscador").prop("disabled", false)
-    //   $("#buscador").val('')
-    //   $('#labelbuscador').show()
-    //   $("#pin").removeClass("mdi-pin")
-    //   $('#pin').addClass("mdi-pin-outline")
-
-    //   let filtro = ''
-    //   lista(filtro)
-    // }
-
-
-
-
-
-
-
   </script>
-
-
-
-
-
-
-
-
-
-
-
   <!-- LOAD FILES AT PAGE END FOR FASTER LOADING -->
-
   <!-- CORE JS FRAMEWORK - START -->
   <script src="assets/js/jquery-2.2.4.min.js"></script>
   <script src="./js/config.js"></script>
   <script src="assets/js/materialize.js"></script>
   <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
   <!-- CORE JS FRAMEWORK - END -->
-
-
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
   <script type="text/javascript">
     $("input#nombre, textarea#descripcion").characterCounter();
@@ -352,26 +176,18 @@
   </script>
   <script src="./js/lista.js"></script>
   <script src="./js/localizacion.js"></script>
-
   <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
-
   <script src="cordova.js"></script>
-
   <!-- CORE TEMPLATE JS - START -->
   <script src="assets/js/init.js"></script>
   <script src="assets/js/settings.js"></script>
-
   <script src="assets/js/scripts.js"></script>
-
   <!-- END CORE TEMPLATE JS - END -->
-
-
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
       $('.preloader-background').delay(10).fadeOut('slow');
     });
   </script>
-
 </body>
 
 </html>
