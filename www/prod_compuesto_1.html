@@ -124,12 +124,7 @@
     </a>
   </div>
   <script>
-    function agrupar_3() {
-      var url_string = window.location.href; //window.location.href
-      var url = new URL(url_string);
-      var id = url.searchParams.get("id");
-      window.location = './agrupar_3_manual.html?id=' + id;
-    }
+
     document.addEventListener("deviceready", coleccionProductos, false);
     function coleccionProductos() {
       $.getJSON(config.urlServer + "getConjuntos", function (data) {

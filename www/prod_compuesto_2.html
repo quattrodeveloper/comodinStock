@@ -249,9 +249,9 @@
 
       <div class="row ">
         <div class="col s12 pad-0">
-          <p>Subconjuntos</p>
+          <p>Categorías</p>
 
-          <ul class="collection invoice-item" id="coleccioProductos">
+          <ul class="collection invoice-item" id="coleccionCategorias">
           </ul>
         </div>
       </div>
@@ -272,6 +272,32 @@
     </a>
   </div>
   <style>
+    .fab {
+      width: 50px;
+      height: 50px;
+      background-color: #9575CD;
+      border-radius: 50%;
+      box-shadow: 0 6px 10px 0 #666;
+      transition: all 0.1s ease-in-out;
+
+      font-size: 50px;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+
+      position: fixed;
+      right: 30px;
+      bottom: 40px;
+    }
+
+    .fab:hover {
+      box-shadow: 0 6px 14px 0 #666;
+      transform: scale(1.05);
+    }
+  </style>
+
+  <a href="#" id="addcompo" class="fab" onclick="addcompo()">+</a>
+  <style>
     .colorgris {
       color: #455A64;
     }
@@ -281,24 +307,37 @@
     }
   </style>
   <script>
-    document.addEventListener("deviceready", coleccionProductos, false)
-    function coleccionProductos() {
+
+    function addcompo() {
+      var url_string = window.location.href
+      var url = new URL(url_string)
+      var idproducto  = url.searchParams.get("idproducto")
+      var idconjunto  = url.searchParams.get("idconjunto")
+      var idcategoria = url.searchParams.get("idcategoria")
+      var idpadrecat  = url.searchParams.get("idpadrecat")
+
+      window.location = './prod_compuesto_3.html?idcategoria=' + idcategoria + '&nombrecat='+ $('#titulo').text() + '&idproducto='+  idproducto + '&idconjunto='+ idconjunto  + '&idpadrecat='+ idpadrecat
+
+    }
+    document.addEventListener("deviceready", coleccionCategorias, false)
+    function coleccionCategorias() {
       var url_string = window.location.href;
       var url = new URL(url_string);
       var idconjunto = url.searchParams.get("idconjunto");
       var idpadrecat = url.searchParams.get("idpadrecat");
 
-      $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getsubcategorias?idconjunto=" + idconjunto + "&idpadrecat=" + idpadrecat, function (data) {
+      var instancia1 = $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getsubcategorias?idconjunto=" + idconjunto + "&idpadrecat=" + idpadrecat, function (data) {
         let cant = 0
         $(data.data).each(function (i, val) {
+
+          console.log('json coleccioncategorias')
           console.log(val)
           let coleccion = ""
           let foto = 'pic.jpg'
-          if (val['id_cat']) {
-            coleccion = coleccion + "<li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id_cat'] + "'></i></div></li>"
-            cant++
-          }
-          $(coleccion).appendTo("#coleccionProductos")
+          coleccion = coleccion + "<li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id_cat'] + "'></i></div></li>"
+          cant++
+
+          var instancia1_coleccion = $(coleccion).appendTo("#coleccionCategorias")
           cargarLista()
         });
       });
@@ -308,27 +347,26 @@
     function coleccionComponentes() {
       var url_string = window.location.href
       var url = new URL(url_string)
-      var idcat = url.searchParams.get("idcat")
-
-      $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getcatcomponentes?idcat=" + idcat, function (data) {
+      var idcat = url.searchParams.get("idcategoria")
+      var instancia2 = $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getcatcomponentes?idcat=" + idcat, function (data) {
         let cant = 0
         $(data.data).each(function (i, val) {
+          //alert('json')
           console.log(val)
           $('#titulo').html(val['catnombre']);
 
           let coleccion = ""
           let foto = 'pic.jpg'
-          if (val['id_cat']) {
-            coleccion = coleccion + "<a href='#' onclick='seleccionarItem(" + val['id_cat'] + ")' id='link-" + val['id_cat'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id_cat'] + "'></i></div></li></a>"
-            cant++
-          }
-          $(coleccion).appendTo("#coleccionComponentes")
+          coleccion = coleccion + "<a href='#' onclick='seleccionarItem(" + val['id_cat'] + ")' id='link-" + val['id_cat'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id_cat'] + "'></i></div></li></a>"
+          cant++
+
+          var instancia2_coleccion = $(coleccion).appendTo("#coleccionComponentes")
           cargarLista()
         });
       });
     }
 
-  
+
 
 
   </script>
