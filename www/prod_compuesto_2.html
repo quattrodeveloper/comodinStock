@@ -235,6 +235,13 @@
   </div>
   <div class="container">
     <div class="section">
+      <nav class="white pad-top-15 black-text">
+        <div class="nav-wrapper">
+          <div class="col s12" id="ruta">
+
+          </div>
+        </div>
+      </nav>
       <div class="row ">
         <div class="input-field col s12">
           <i class="mdi mdi-magnify prefix"></i>
@@ -311,22 +318,49 @@
     function addcompo() {
       var url_string = window.location.href
       var url = new URL(url_string)
-      var idproducto  = url.searchParams.get("idproducto")
-      var idconjunto  = url.searchParams.get("idconjunto")
+      var idproducto = url.searchParams.get("idproducto")
+      var idconjunto = url.searchParams.get("idconjunto")
       var idcategoria = url.searchParams.get("idcategoria")
-      var idpadrecat  = url.searchParams.get("idpadrecat")
+      var idpadrecat = url.searchParams.get("idpadrecat")
 
-      window.location = './prod_compuesto_3.html?idcategoria=' + idcategoria + '&nombrecat='+ $('#titulo').text() + '&idproducto='+  idproducto + '&idconjunto='+ idconjunto  + '&idpadrecat='+ idpadrecat
+      window.location = './prod_compuesto_3.html?idcategoria=' + idcategoria + '&nombrecat=' + $('#titulo').text() + '&idproducto=' + idproducto + '&idconjunto=' + idconjunto + '&idpadrecat=' + idpadrecat
 
     }
+
+
+    document.addEventListener("deviceready", getRuta, false)
+    function getRuta() {
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+
+      var idcat = url.searchParams.get("idcategoria");
+      let coleccion = ""
+
+
+
+      var instancia1 = $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getruta?idcategoria=" + idcat, function (data) {
+        const lista = Object.values(data.data);
+        $(lista).each(function (i, val) {
+          coleccion = coleccion + '<a href="./prod_compuesto_2.html?idproducto=' + val['idprod_cat'] + '&idconjunto=' + val['idprod_cat'] + '&idcategoria=' + val['id_cat'] + '&idpadrecat=' + val['idpadre_cat'] + '" class="breadcrumb black-text">' + val['prod_nombre'] + '</a>';
+
+
+          cargarLista()
+        });
+        var instancia1_coleccion = $(coleccion).appendTo("#ruta")
+
+      });
+    }
+
+
     document.addEventListener("deviceready", coleccionCategorias, false)
     function coleccionCategorias() {
       var url_string = window.location.href;
       var url = new URL(url_string);
       var idconjunto = url.searchParams.get("idconjunto");
       var idpadrecat = url.searchParams.get("idpadrecat");
+      var idcat = url.searchParams.get("idcategoria");
 
-      var instancia1 = $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getsubcategorias?idconjunto=" + idconjunto + "&idpadrecat=" + idpadrecat, function (data) {
+      var instancia1 = $.getJSON("https://stock.quattropy.com/s1/public/api/stock/getsubcategorias?idconjunto=" + idconjunto + "&idpadrecat=" + idpadrecat + "&idcat=" + idcat, function (data) {
         let cant = 0
         $(data.data).each(function (i, val) {
 
@@ -334,7 +368,7 @@
           console.log(val)
           let coleccion = ""
           let foto = 'pic.jpg'
-          coleccion = coleccion + "<li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id_cat'] + "'></i></div></li>"
+          coleccion = coleccion + "<li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><a href='#' onclick='delcat(" + val['id_cat'] + ")'  id='link-" + val['id_compo'] + "' class='colorgris'><i class='mdi mdi-delete-outline' id='check-" + val['id_compo'] + "'></i></a><a href='./prod_compuesto_2.html?idproducto=" + val['idprod_cat'] + "&idconjunto=" + idconjunto + "&idcategoria=" + val['id_cat'] + "&idpadrecat=" + val['idpadre_cat'] + "'><i class='mdi mdi-chevron-right' id='check-" + val['id_cat'] + "'></i></a></div></li>"
           cant++
 
           var instancia1_coleccion = $(coleccion).appendTo("#coleccionCategorias")
@@ -357,7 +391,7 @@
 
           let coleccion = ""
           let foto = 'pic.jpg'
-          coleccion = coleccion + "<a href='#' onclick='seleccionarItem(" + val['id_cat'] + ")' id='link-" + val['id_cat'] + "' class='colorgris'><li class='collection-item avatar' id='" + val['id_cat'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><i class='mdi mdi-pin-outline' id='check-" + val['id_cat'] + "'></i></div></li></a>"
+          coleccion = coleccion + "<li class='collection-item avatar' id='" + val['id_compo'] + "'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['prod_foto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + "</span></div><div class='secondary-content'><a href='#' onclick='delcompo(" + val['id_compo'] + ")'  id='link-" + val['id_compo'] + "' class='colorgris'><i class='mdi mdi-delete-outline' id='check-" + val['id_compo'] + "'></i></a><a href='#' onclick='crearCategoria(" + val['id_compo'] + ")'  id='link2-" + val['id_compo'] + "' class='colorgris'><i class='mdi mdi-animation-outline' id='check-" + val['id_compo'] + "'></i></a></div></li>"
           cant++
 
           var instancia2_coleccion = $(coleccion).appendTo("#coleccionComponentes")
@@ -366,6 +400,36 @@
       });
     }
 
+
+    function delcompo(idcompo) {
+      var instancia1 = $.getJSON("https://stock.quattropy.com/s1/public/api/stock/delcompo?idcompo=" + idcompo, function (data) {
+        if (data.status == 'success') {
+          window.location.reload(false)
+        } else {
+          alert('Para eliminar el componente raíz debe eliminar la categoría.')
+        }
+      });
+    }
+
+    function delcat(idcat) {
+      var instancia1 = $.getJSON("https://stock.quattropy.com/s1/public/api/stock/delcat?idcategoria=" + idcat, function (data) {
+        if (data.status == 'success') {
+          window.location.reload(false)
+        } else {
+          alert('Error al intentar eliminar la categoría.')
+        }
+      });
+    }
+
+    function crearCategoria(idcompo) {
+      var instancia1 = $.getJSON("https://stock.quattropy.com/s1/public/api/stock/crearCategoria?idcompo=" + idcompo, function (data) {
+        if (data.status == 'success') {
+          window.location.reload(false)
+        } else {
+          alert('Error al intentar crear la categoria.')
+        }
+      });
+    }
 
 
 

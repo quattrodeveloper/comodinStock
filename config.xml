@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.comodin.stock" version="1.5.19" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.comodin.stock" version="1.5.28" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Stock</name>
     <description>
     </description>
-    <author email="maildejeremias@gmail.com" href="https://local.quattropy.com/comodin_stock">
+    <author email="maildejeremias@gmail.com" href="https://stock.quattropy.com">
     </author>
     <content src="index.html" />
     <icon src="res/icon.png" />

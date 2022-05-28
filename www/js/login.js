@@ -38,7 +38,7 @@ $("#submit").click(function (event) {
 		$("#msg_alert").addClass("new badge blue lighten-2");
 		$("#msg_title").html("Aguarde!");
 		$("#msg_text").html("Autenticando...");
-		const version  = '1519'
+		const version  = '1528'
 		const loginurl = config.urlServer + 'login/' + formData['username'] + '&' + formData['password'] + '&' + version
 		console.log(loginurl)
 		$.ajax({

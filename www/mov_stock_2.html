@@ -217,7 +217,7 @@
 
             qr = qr.substring(qr.length-6, qr.length);
             cant++;
-            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['nombrefoto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + " (" + qr + ")</span></div><div class='secondary-content'><a href='#' onclick='eliminar(" + val['movi_id'] + ")' name='item-" + val['movi_id'] + "'><i class='mdi mdi-delete'></i></a></div></li>";
+            coleccion = coleccion + "<li class='collection-item avatar'><div class='item-det'><img src='https://stock.quattropy.com/s1/public/img/stock/lg/productos/" + val['nombrefoto'] + "' alt='' class='circle'><span class='title'>" + val['prod_nombre'] + " (" + qr + ")</span></div><div class='secondary-content'><a href='#' onclick='eliminar(" + val['movi_id'] + ")' name='item-" + val['movi_id'] + "'><i class='mdi mdi-delete-outline'></i></a></div></li>";
           
           $('#cant').html('(' + cant + ')');
           $(coleccion).appendTo("#coleccionComponentes");
